@@ -54,6 +54,31 @@ sind verbatim übernommen, alle Lücken stehen hier als Operator-TODO.
 > Diese Punkte sind im Code als Kommentar `OPERATOR-TODO` markiert und teils als
 > sichtbare Platzhalter umgesetzt. Vor Go-Live klären/füllen.
 
+### 4.0 RECHERCHE-ERGEBNISSE (extern, Stand 19.06.2026 — vom Betreiber bestätigen lassen)
+Web-/Registerrecherche zu Inhaber, Größe, Alter. **Belegt** (mehrere Quellen) vs. **unklar**:
+
+- **Inhaber: Sergey Bogdanov** (belegt). Gewerbe/Registereintrag: „Sergey Bogdanov -
+  Backroom Physio Berlin -", 10115 Berlin → **Einzelunternehmen** (freiberufl. Physio).
+  Quellen: Creditreform-Firmeneintrag, Doctolib, United.Fitness, LinkedIn, Instagram.
+- **Größe: Einzelpraxis** (belegt). Registerauskunft: **1 aktive Person** (= der Inhaber
+  selbst). Kein größeres Team belegt. Räumlich an der Adresse der **Arztpraxis
+  Dr. med. Hans-Georg Schlosser** (Linienstraße 139-140) → das erklärt das Doctolib-Profil
+  „Physiotherapie Dr. Schlosser". **Backroom Physio (Bogdanov) ≠ Dr. Schlosser** (Arzt);
+  Bogdanov ist der Physio, Schlosser die ärztliche Praxis am selben Standort.
+- **Profil/Qualifikation** (belegt): Physiotherapeut **+ Gewichtheber-/Langhantelathletik-
+  Trainer** (BVDG-Lizenz). Schwerpunkte: Kraft-/Functional-/Reha-Training, Wettkampf-
+  vorbereitung, Sportmassage → deckt sich exakt mit der „Return to Sport"-Positionierung.
+  Vorher tätig bei „Körpermanufaktur" (eigenes Doctolib-Profil), Umzug zu Backroom „zum 1.10.".
+- **Alter — NICHT öffentlich belegt:**
+  - *Gründungsjahr* der Praxis: nicht frei einsehbar (Creditreform/North Data = Paywall);
+    Indizien (Umzug „1.10.", Website-Assets aus 02/2026, früher „Körpermanufaktur") → die
+    Backroom-Praxis ist **neu/jung** (vermutlich 2024-2025), aber **kein belegtes Jahr**.
+  - *Alter des Inhabers*: keine öffentliche Quelle (kein Geburtsjahr auffindbar).
+  → Beides beim Betreiber direkt erfragen.
+- **Bonus (laut Google-Eintrag, bestätigen):** Bewertung **4,9★ / 28 Rezensionen**;
+  Öffnungszeiten **Mo-Fr 8-20, Sa 8-12 Uhr** → falls korrekt, löst das auch 4.4 (Zeiten)
+  und ermöglicht eine echte Reviews-/Status-Anzeige (4.9 / Live-Status).
+
 ### 4.1 RECHT (kritisch — Pflicht für eine deutsche Geschäftsseite)
 - **Impressum**: Die Altseite hat **kein Impressum** (`impressumLink` leer im Quelltext!).
   Benötigt: vollständiger Inhaber-/Praxisname & Rechtsform, ladungsfähige Anschrift,
