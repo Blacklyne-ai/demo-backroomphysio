@@ -101,9 +101,11 @@ Web-/Registerrecherche zu Inhaber, Größe, Alter. **Belegt** (mehrere Quellen) 
 - Öffnungs-/Sprechzeiten (nicht auf Altseite) → für Kontakt, SchemaOrg, ggf.
   Live-Status nachliefern.
 
-### 4.5 TEAM
-- Therapeut:innen: Namen, Qualifikationen, Sprachen, Fotos. Aktuell generisch
-  ("internationales Team, DE/EN/RU") ohne Namen.
+### 4.5 TEAM  (teilweise gelöst durch Recherche 4.0)
+- Praxis ist eine **Einzelpraxis** (Inhaber Sergey Bogdanov). Auf `/ueber-uns` ist der
+  Gründer jetzt belegt benannt (Physio + Gewichtheber-Coach BVDG, echte Schwerpunkte).
+- **Offen:** echtes Portraitfoto (aktuell Emblem als Platzhalter in der ID-Karte),
+  Erfahrung/Ausbildungsjahre, Alter - vom Betreiber bestätigen lassen.
 
 ### 4.6 SPRACHE
 - Primärsprache bestätigen. EN/RU sofort oder Phase 2? Schalter ist vorbereitet.

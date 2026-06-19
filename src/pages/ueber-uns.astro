@@ -40,6 +40,43 @@ import { usp, international } from '../data/content';
         </div>
       </div>
 
+      <!-- Gründer — belegt (Recherche, JUDGEMENT_CALLS 4.0): Sergey Bogdanov, Physio +
+           Gewichtheber-Coach (BVDG), Einzelpraxis. OPERATOR-TODO: echtes Portraitfoto +
+           Erfahrung/Ausbildung; Alter/Gründungsjahr nicht öffentlich belegt. -->
+      <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-stretch mt-16 md:mt-24">
+        <!-- ID-Karte (dunkel, Emblem statt erfundenem Portrait) -->
+        <div class="lg:col-span-5" data-reveal>
+          <div class="card-dark h-full p-8 flex flex-col justify-between" style="background: rgb(var(--rgb-dark)); min-height: 340px;">
+            <div>
+              <span class="logo-coin w-14 h-14 mb-7" style="background: rgb(var(--rgb-dark-soft));">
+                <img src="/logo.png" alt="Backroom Physio Emblem" width="605" height="503" class="h-7 w-auto" loading="lazy" />
+              </span>
+              <p class="font-display text-2xl font-semibold text-white">Sergey Bogdanov</p>
+              <p class="text-green-bright mt-1.5">Gründer · Physiotherapeut & Gewichtheber-Coach</p>
+            </div>
+            <div class="flex flex-wrap gap-2 mt-8">
+              {['Krafttraining', 'Functional Training', 'Reha-Training', 'Wettkampfvorbereitung', 'Sportmassage'].map((t) => (
+                <span class="tag tag-dark text-xs">{t}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+        <!-- Prose -->
+        <div class="lg:col-span-7 flex flex-col justify-center" data-reveal style="--rd:120ms">
+          <span class="eyebrow mb-5">Wer Sie behandelt</span>
+          <h2 class="display-3 text-balance mb-5 font-display" style="font-weight:600;">Reha denkt hier in Belastung - nicht nur in Symptomen.</h2>
+          <p class="text-muted leading-relaxed mb-4">
+            Hinter Backroom steht Sergey Bogdanov - Physiotherapeut und zugleich Trainer im
+            Gewichtheben bzw. in der Langhantelathletik (BVDG-Lizenz). Genau diese Doppelrolle
+            ist die Idee hinter „Return to Sport": Reha, die in Kraft, Belastung und Leistung denkt.
+          </p>
+          <p class="text-muted leading-relaxed">
+            Backroom ist bewusst eine fokussierte Praxis - Sie werden vom Gründer selbst betreut,
+            nicht von wechselndem Personal.
+          </p>
+        </div>
+      </div>
+
       <!-- USP -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 mt-16 md:mt-24">
         {usp.map((u, i) => (
