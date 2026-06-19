@@ -1,0 +1,140 @@
+---
+import { nav, site, cta } from '../data/site';
+import Icon from './Icon.astro';
+import LangSwitch from './LangSwitch.astro';
+const { current = '' } = Astro.props;
+
+const isActive = (href: string) =>
+  current === href || (href.length > 1 && current.startsWith(href));
+---
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50">
+  <div class="container-wide pt-3 md:pt-4">
+    <div
+      id="nav-pill"
+      class="flex items-center justify-between gap-4 rounded-pill pl-3 pr-2 md:pl-4 md:pr-3 h-14 md:h-[4.2rem] transition-all duration-300"
+      style="background: rgba(246,247,248,0.78); backdrop-filter: blur(16px) saturate(150%); -webkit-backdrop-filter: blur(16px) saturate(150%); border: 1px solid rgba(224,227,232,0.9); box-shadow: 0 1px 2px rgba(17,20,23,0.04), 0 10px 30px -16px rgba(17,20,23,0.18);"
+    >
+      <!-- Brand: weisses Emblem (1:1) in dunklem Coin + Wortmarke -->
+      <a href="/" class="flex items-center gap-2.5 flex-shrink-0" aria-label={`${site.name} - Startseite`}>
+        <span class="logo-coin w-9 h-9 md:w-10 md:h-10">
+          <img src="/logo.png" alt={site.name} width="605" height="503" class="h-[18px] md:h-5 w-auto" />
+        </span>
+        <span class="font-display font-semibold leading-none tracking-tight text-[1.05rem] md:text-[1.15rem]">
+          <span class="text-ink">Backroom</span> <span class="text-muted-light hidden xs:inline">Physio</span>
+        </span>
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden lg:flex items-center gap-x-1" aria-label="Hauptnavigation">
+        {nav.map((item) => (
+          <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}
+             class={`nav-link ${isActive(item.href) ? 'active' : ''}`}>{item.label}</a>
+        ))}
+      </nav>
+
+      <!-- Right cluster -->
+      <div class="flex items-center gap-2 md:gap-2.5">
+        <div class="hidden lg:block"><LangSwitch variant="light" /></div>
+        <a href={cta.phone.href} class="hidden xl:inline-flex items-center gap-2 text-ink/75 hover:text-green-ink transition text-sm font-medium" aria-label={`Anrufen ${cta.phone.label}`}>
+          <Icon name="Phone" size={15} strokeWidth={2} class="text-green-deep" />
+          <span>{cta.phone.label}</span>
+        </a>
+        <div class="hidden sm:block">
+          <a href={cta.book.href} target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+            Termin <span class="hidden md:inline">über Doctolib</span><Icon name="ArrowUpRight" size={15} strokeWidth={2.2} />
+          </a>
+        </div>
+
+        <button id="menu-toggle" class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-full transition" style="color:rgb(var(--rgb-ink));" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden lg:hidden container-wide mt-2">
+    <nav class="rounded-3xl p-4 flex flex-col max-h-[calc(100vh-6rem)] overflow-y-auto" style="background: rgba(246,247,248,0.98); backdrop-filter: blur(18px); border: 1px solid rgba(224,227,232,0.9); box-shadow: 0 24px 50px -22px rgba(17,20,23,0.28);" aria-label="Mobile Navigation">
+      {nav.map((item) => (
+        <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}
+          class={`py-3 border-b border-line/70 font-display text-lg font-medium inline-flex items-center gap-1.5 ${isActive(item.href) ? 'text-green-ink' : 'text-ink/90'}`}>
+          {item.label}
+        </a>
+      ))}
+      <div class="flex items-center justify-between mt-5 mb-1">
+        <span class="text-muted-light text-xs uppercase tracking-widest font-display">Sprache</span>
+        <LangSwitch variant="light" />
+      </div>
+      <div class="grid grid-cols-2 gap-2.5 mt-4">
+        <a href={cta.phone.href} class="btn btn-ghost btn-sm"><Icon name="Phone" size={15} strokeWidth={2.2} /> Anrufen</a>
+        <a href={cta.book.href} target="_blank" rel="noopener" class="btn btn-primary btn-sm">Doctolib<Icon name="ArrowUpRight" size={15} strokeWidth={2.2} /></a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .nav-link {
+    position: relative; font-size: 0.95rem; font-weight: 500; color: rgb(var(--rgb-ink) / 0.72);
+    padding: 0.5rem 0.85rem; border-radius: 999px; transition: color .2s, background-color .2s;
+  }
+  .nav-link:hover { color: rgb(var(--rgb-ink)); background: rgb(var(--rgb-ink) / 0.04); }
+  .nav-link.active { color: rgb(var(--rgb-green-ink)); }
+  .nav-link.active::after {
+    content: ""; position: absolute; left: 0.85rem; right: 0.85rem; bottom: 0.28rem; height: 2px;
+    background: rgb(var(--rgb-green-deep)); border-radius: 2px;
+  }
+  .hamburger { display: inline-flex; flex-direction: column; justify-content: center; gap: 5px; width: 22px; height: 22px; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: rgb(var(--rgb-ink)); border-radius: 2px; transition: transform 0.4s cubic-bezier(0.68,-0.55,0.27,1.55), opacity 0.25s ease; transform-origin: center; }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  /* xs-Breakpoint (Wortmarke "Physio" erst ab ~380px) */
+  @media (min-width: 380px) { .xs\:inline { display: inline; } }
+</style>
+
+<script>
+  function isOpen() { const m = document.getElementById('mobile-menu'); return !!m && !m.classList.contains('hidden'); }
+  function setOpen(open: boolean) {
+    const menu = document.getElementById('mobile-menu');
+    const toggle = document.getElementById('menu-toggle');
+    const burger = toggle?.querySelector('.hamburger');
+    if (!menu) return;
+    menu.classList.toggle('hidden', !open);
+    burger?.classList.toggle('open', open);
+    toggle?.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle?.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  document.addEventListener('astro:page-load', () => {
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    toggle?.addEventListener('click', (e) => { e.stopPropagation(); setOpen(!isOpen()); });
+    menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+    document.body.style.overflow = '';
+  });
+  const w = window as any;
+  if (!w.__brHeader) {
+    w.__brHeader = true;
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && isOpen()) setOpen(false); });
+    document.addEventListener('click', (e) => { const h = document.getElementById('site-header'); if (isOpen() && h && !h.contains(e.target as Node)) setOpen(false); });
+    window.addEventListener('resize', () => { if (window.innerWidth >= 1024 && isOpen()) setOpen(false); });
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (ticking) return; ticking = true;
+      requestAnimationFrame(() => {
+        const pill = document.getElementById('nav-pill');
+        if (pill) {
+          if (window.scrollY > 16) {
+            pill.style.background = 'rgba(255,255,255,0.9)';
+            pill.style.boxShadow = '0 1px 2px rgba(17,20,23,0.05), 0 16px 38px -18px rgba(17,20,23,0.3)';
+          } else {
+            pill.style.background = 'rgba(246,247,248,0.78)';
+            pill.style.boxShadow = '0 1px 2px rgba(17,20,23,0.04), 0 10px 30px -16px rgba(17,20,23,0.18)';
+          }
+        }
+        ticking = false;
+      });
+    }, { passive: true });
+  }
+</script>

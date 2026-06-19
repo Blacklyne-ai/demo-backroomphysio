@@ -1,0 +1,86 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import { site, addressOneLine } from '../data/site';
+// HINWEIS: Die Altseite hatte keine eigene Datenschutzerklärung. Dies ist ein
+// strukturierter Entwurf (Hosting Cloudflare, Google Maps mit Consent, Doctolib,
+// Instagram). Vor Go-Live juristisch finalisieren (JUDGEMENT_CALLS.md §4.1).
+---
+<Layout title={`Datenschutz - ${site.name}`} noindex={true} current="/datenschutz">
+  <section class="pt-28 pb-12 md:pt-36 md:pb-16 border-b border-line" style="background: rgb(var(--rgb-surface));">
+    <div class="container-narrow">
+      <span class="eyebrow mb-4">Rechtliches</span>
+      <h1 class="display-2">Datenschutz&shy;erklärung</h1>
+    </div>
+  </section>
+  <section class="py-14 md:py-20 bg-paper">
+    <div class="container-narrow">
+      <div class="rounded-[16px] border border-dashed p-5 mb-10 flex items-start gap-3.5" style="background: rgb(var(--rgb-green-deep) / 0.06); border-color: rgb(var(--rgb-green-deep) / 0.4);">
+        <span class="text-green-deep flex-none mt-0.5"><Icon name="Info" size={20} strokeWidth={2} /></span>
+        <p class="text-[0.92rem] text-ink-soft leading-relaxed">
+          <strong>Entwurf.</strong> Strukturierte Vorlage auf Basis der eingesetzten Dienste.
+          Die <span class="op">[Operator]</span>-Felder und die juristische Endfassung sind vor
+          Go-Live zu prüfen (z. B. durch Datenschutzbeauftragte/n oder anwaltlich).
+        </p>
+      </div>
+
+      <div class="legal-prose">
+        <h2>1. Verantwortlicher</h2>
+        <p>
+          <span class="op">[Operator: Verantwortliche Stelle / Inhaber]</span><br />
+          {addressOneLine}<br />
+          Telefon: {site.phoneDisplay} · E-Mail: <a href={`mailto:${site.email}`}>{site.email}</a>
+        </p>
+
+        <h2>2. Allgemeines / Ihre Rechte</h2>
+        <p>
+          Wir behandeln personenbezogene Daten vertraulich und gemäß DSGVO und BDSG. Sie haben
+          das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung,
+          Datenübertragbarkeit, Widerspruch sowie Beschwerde bei einer Aufsichtsbehörde.
+        </p>
+
+        <h2>3. Hosting</h2>
+        <p>
+          Diese Website wird als statische Seite über Cloudflare Pages (Cloudflare, Inc.)
+          bereitgestellt. Beim Abruf verarbeitet der Hoster technisch notwendige Server-Logdaten
+          (z. B. IP-Adresse, Zeitpunkt, abgerufene Datei) zur Auslieferung und Sicherheit
+          (Art. 6 Abs. 1 lit. f DSGVO). <span class="op">[Operator: ggf. Auftragsverarbeitungs­vertrag / Cloudflare-Datenschutz verlinken]</span>
+        </p>
+
+        <h2>4. Cookies</h2>
+        <p>
+          Die Seite setzt nur technisch notwendige Cookies und kein Tracking, keine Analyse,
+          kein Marketing. Die Speicherung des Cookie-Hinweises erfolgt lokal in Ihrem Browser.
+        </p>
+
+        <h2>5. Google Maps (mit Einwilligung)</h2>
+        <p>
+          Die Karte wird erst geladen, wenn Sie aktiv „Karte laden" klicken (Einwilligung,
+          Art. 6 Abs. 1 lit. a DSGVO). Erst dann werden Daten an Google Ireland Ltd. übertragen
+          (u. a. IP-Adresse). Ohne Klick werden keine Google-Maps-Daten geladen.
+        </p>
+
+        <h2>6. Terminbuchung über Doctolib</h2>
+        <p>
+          Für die Terminbuchung verlinken wir auf Doctolib (Doctolib GmbH). Mit Klick verlassen
+          Sie diese Website; es gilt die Datenschutzerklärung von Doctolib. Wir erheben über den
+          Link selbst keine personenbezogenen Daten.
+        </p>
+
+        <h2>7. Instagram</h2>
+        <p>
+          Wir verlinken auf unser Instagram-Profil. Erst mit Klick werden Sie zu Instagram
+          (Meta Platforms Ireland Ltd.) weitergeleitet; dort gelten deren Datenschutzbestimmungen.
+        </p>
+
+        <h2>8. Kontaktaufnahme</h2>
+        <p>
+          Bei Kontakt per Telefon oder E-Mail verarbeiten wir Ihre Angaben zur Bearbeitung der
+          Anfrage (Art. 6 Abs. 1 lit. b/f DSGVO). <span class="op">[Operator: Aufbewahrung/Behandlungsdaten ergänzen]</span>
+        </p>
+
+        <p class="text-muted-light text-sm">Stand: 2026 · Entwurf, vor Veröffentlichung zu finalisieren.</p>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,78 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import { site, addressOneLine } from '../data/site';
+// HINWEIS: Die Altseite hatte KEIN Impressum. Bekannte Daten (Adresse, Telefon,
+// E-Mail) sind eingesetzt; alle übrigen Pflichtangaben sind als [Operator]-Felder
+// markiert und vor Go-Live zu vervollständigen (JUDGEMENT_CALLS.md §4.1).
+---
+<Layout title={`Impressum - ${site.name}`} noindex={true} current="/impressum">
+  <section class="pt-28 pb-12 md:pt-36 md:pb-16 border-b border-line" style="background: rgb(var(--rgb-surface));">
+    <div class="container-narrow">
+      <span class="eyebrow mb-4">Rechtliches</span>
+      <h1 class="display-2">Impressum</h1>
+    </div>
+  </section>
+  <section class="py-14 md:py-20 bg-paper">
+    <div class="container-narrow">
+      <!-- Entwurfs-Hinweis (ehrlich) -->
+      <div class="rounded-[16px] border border-dashed p-5 mb-10 flex items-start gap-3.5" style="background: rgb(var(--rgb-green-deep) / 0.06); border-color: rgb(var(--rgb-green-deep) / 0.4);">
+        <span class="text-green-deep flex-none mt-0.5"><Icon name="Info" size={20} strokeWidth={2} /></span>
+        <p class="text-[0.92rem] text-ink-soft leading-relaxed">
+          <strong>Entwurf.</strong> Die bisherige Website enthielt kein Impressum. Bekannte
+          Angaben sind eingetragen; die markierten <span class="op">[Operator]</span>-Felder
+          sind vom Betreiber zu vervollständigen, bevor die Seite live geht.
+        </p>
+      </div>
+
+      <div class="legal-prose">
+        <h2>Angaben gemäß § 5 DDG (TMG)</h2>
+        <p>
+          <span class="op">[Operator: Inhaber-/Praxisname + Rechtsform]</span><br />
+          {site.address.street}<br />
+          {site.address.postcode} {site.address.city}
+        </p>
+        <p>
+          Verhältnis zu „Praxis Dr. Schlosser" (Doctolib-Profil) ist zu klären -
+          <span class="op">[Operator: Inhaber/Praxisträger benennen]</span>.
+        </p>
+
+        <h2>Kontakt</h2>
+        <p>
+          Telefon: {site.phoneDisplay}<br />
+          E-Mail: <a href={`mailto:${site.email}`}>{site.email}</a>
+        </p>
+
+        <h2>Berufsbezeichnung und berufsrechtliche Regelungen</h2>
+        <p>
+          Berufsbezeichnung: Physiotherapeut/in (verliehen in der Bundesrepublik Deutschland)<br />
+          Zuständige Kammer / verleihender Staat: <span class="op">[Operator]</span><br />
+          Es gelten u. a. das Masseur- und Physiotherapeutengesetz (MPhG) -
+          <span class="op">[Operator: berufsrechtliche Regelungen ergänzen/verlinken]</span>.
+        </p>
+
+        <h2>Aufsichtsbehörde</h2>
+        <p><span class="op">[Operator: zuständige Aufsichtsbehörde, Anschrift, Link]</span></p>
+
+        <h2>Umsatzsteuer-ID</h2>
+        <p><span class="op">[Operator: USt-IdNr. gemäß § 27a UStG, falls vorhanden - sonst entfernen]</span></p>
+
+        <h2>Redaktionell verantwortlich</h2>
+        <p><span class="op">[Operator: verantwortliche Person + Anschrift]</span></p>
+
+        <h2>EU-Streitschlichtung</h2>
+        <p>
+          Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
+          <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr/</a>.
+          Unsere E-Mail-Adresse finden Sie oben.
+        </p>
+
+        <h2>Verbraucherstreitbeilegung</h2>
+        <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+
+        <h2>Bildnachweis</h2>
+        <p>Logo und Foto des Trainingsraums: Backroom Physio Berlin. Weitere Fotos (Hero, Return to Sport, Berlin): Pexels (lizenzfrei) - Platzhalter, vom Betreiber durch eigene Aufnahmen ersetzbar.</p>
+      </div>
+    </div>
+  </section>
+</Layout>

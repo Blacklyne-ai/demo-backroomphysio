@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import { site, cta } from '../data/site';
+---
+<Layout title={`Seite nicht gefunden - ${site.name}`} noindex={true}>
+  <section class="bg-paper min-h-[78vh] flex items-center py-24">
+    <div class="container-narrow text-center">
+      <p class="font-display font-semibold leading-none" style="font-size: clamp(5rem, 18vw, 11rem); color: rgb(var(--rgb-green-deep) / 0.18); letter-spacing:-0.04em;">404</p>
+      <h1 class="display-2 mt-2 mb-4 text-balance">Diese Seite haben wir nicht gefunden.</h1>
+      <p class="lede max-w-xl mx-auto mb-9">Vielleicht ist der Link veraltet. Zurück zum Start - oder direkt zum Termin über Doctolib.</p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="/" class="btn btn-ghost btn-lg"><Icon name="ArrowLeft" size={16} strokeWidth={2.2} /> Zur Startseite</a>
+        <a href={cta.book.href} target="_blank" rel="noopener" class="btn btn-primary btn-lg">Termin über Doctolib<Icon name="ArrowUpRight" size={16} strokeWidth={2.2} /></a>
+      </div>
+    </div>
+  </section>
+</Layout>

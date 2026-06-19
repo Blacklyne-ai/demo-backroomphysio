@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import { cta } from '../data/site';
+import { pillars } from '../data/content';
+---
+<Layout title="Leistungen - Physiotherapie & Sport-Reha | Backroom Physio Berlin" current="/leistungen">
+  <PageHero
+    crumb="Leistungen"
+    eyebrow="Was wir machen"
+    title="Belastbar <span class='text-green-ink'>zurück</span> - in Sport, Training und Alltag."
+    subtitle="Physiotherapie, Return to Sport und Return to Activity - alles mit demselben Ziel: Sie wieder belastbar und in Bewegung zu bringen."
+    primary={{ href: cta.book.href, label: 'Termin über Doctolib', external: true }}
+  />
+
+  <section class="py-16 md:py-24 bg-paper">
+    <div class="container-px">
+      <div class="divide-y divide-line">
+        {pillars.map((p) => (
+          <article id={p.slug} class="grid lg:grid-cols-12 gap-8 lg:gap-12 py-12 md:py-16 scroll-mt-28" data-reveal>
+            <div class="lg:col-span-4">
+              <span class="icon-chip mb-5"><Icon name={p.icon} size={26} strokeWidth={1.75} /></span>
+              <h2 class="display-3 font-display text-ink" style="font-weight:600;">{p.term}</h2>
+              <p class="text-muted-light mt-1">{p.titleDe}</p>
+            </div>
+            <div class="lg:col-span-8 lg:border-l lg:border-line lg:pl-12">
+              {p.long.map((para) => (<p class="text-[1.05rem] leading-relaxed text-muted mb-4 last:mb-0">{para}</p>))}
+              {p.slug === 'return-to-sport' && (
+                <a href="/return-to-sport" class="link-arrow mt-6 inline-flex">So funktioniert Return to Sport<Icon name="ArrowRight" size={15} strokeWidth={2.2} /></a>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Ehrlicher Abschluss-Hinweis (keine erfundene Leistungsliste) -->
+      <div class="mt-10 rounded-[20px] border border-line p-7 md:p-8 flex flex-col sm:flex-row sm:items-center gap-5" style="background: rgb(var(--rgb-surface));" data-reveal>
+        <span class="icon-chip flex-none"><Icon name="Info" size={22} strokeWidth={1.8} /></span>
+        <p class="text-muted leading-relaxed flex-1">
+          Welche Behandlung für Sie sinnvoll ist, hängt von Befund und Ziel ab - das besprechen
+          wir individuell. Der erste Schritt ist ein Termin.
+        </p>
+        <a href={cta.book.href} target="_blank" rel="noopener" class="btn btn-primary flex-none">Termin<Icon name="ArrowUpRight" size={16} strokeWidth={2.2} /></a>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

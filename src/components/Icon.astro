@@ -1,0 +1,29 @@
+---
+// Zentrale Lucide-Icon-Map (@lucide/astro, named imports).
+// Data-Files referenzieren Icons per Name. Namen gegen node_modules geprüft.
+// Brand-Icons (Facebook/Instagram/LinkedIn) gibt es in Lucide NICHT → inline SVG (Footer).
+import {
+  Activity, ShieldCheck, HeartPulse, Dumbbell, Footprints, Users, HandHeart,
+  Target, Goal, TrendingUp, Move, MoveRight, Accessibility,
+  Languages, Globe, Phone, PhoneCall, Mail, MapPin, MapPinned, Map, Navigation,
+  Clock, CalendarCheck, CalendarDays, Send,
+  ArrowRight, ArrowUpRight, ArrowLeft, ChevronDown, ChevronRight, ChevronUp,
+  Menu, X, Check, CircleCheckBig, ListChecks, Plus, Minus, Quote, MessageCircle,
+  Star, Info, CircleDot, ExternalLink, Hand, Sparkles, Building2,
+} from '@lucide/astro';
+
+const MAP: Record<string, any> = {
+  Activity, ShieldCheck, HeartPulse, Dumbbell, Footprints, Users, HandHeart,
+  Target, Goal, TrendingUp, Move, MoveRight, Accessibility,
+  Languages, Globe, Phone, PhoneCall, Mail, MapPin, MapPinned, Map, Navigation,
+  Clock, CalendarCheck, CalendarDays, Send,
+  ArrowRight, ArrowUpRight, ArrowLeft, ChevronDown, ChevronRight, ChevronUp,
+  Menu, X, Check, CircleCheckBig, ListChecks, Plus, Minus, Quote, MessageCircle,
+  Star, Info, CircleDot, ExternalLink, Hand, Sparkles, Building2,
+};
+
+interface Props { name: string; size?: number; class?: string; strokeWidth?: number }
+const { name, size = 24, class: className = '', strokeWidth = 1.75 } = Astro.props;
+const Cmp = MAP[name] ?? CircleDot;
+---
+<Cmp size={size} class={className} stroke-width={strokeWidth} />

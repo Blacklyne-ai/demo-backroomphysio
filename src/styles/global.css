@@ -1,0 +1,341 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Display: Space Grotesk Variable · Body: Inter Variable — self-hosted woff2,
+   font-display:optional → kein Headline-Reflow, CLS ~0 (Memory feedback_font_display_cls).
+   latin + latin-ext (Umlaute). Cyrillic (RU) = Phase 2. ── */
+@font-face {
+  font-family: "Space Grotesk Variable";
+  font-style: normal; font-weight: 300 700; font-display: optional;
+  src: url("/fonts/space-grotesk-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Space Grotesk Variable";
+  font-style: normal; font-weight: 300 700; font-display: optional;
+  src: url("/fonts/space-grotesk-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: "Inter Variable";
+  font-style: normal; font-weight: 100 900; font-display: optional;
+  src: url("/fonts/inter-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Inter Variable";
+  font-style: normal; font-weight: 100 900; font-display: optional;
+  src: url("/fonts/inter-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+/* Cyrillic — für RU-Labels (z. B. "Русский"); volle RU-Übersetzung = Phase 2. */
+@font-face {
+  font-family: "Inter Variable";
+  font-style: normal; font-weight: 100 900; font-display: optional;
+  src: url("/fonts/inter-cyrillic.woff2") format("woff2");
+  unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   BACKROOM PHYSIO BERLIN — "BACK TO SPORT" DESIGN SYSTEM
+   Monochrom (Stahl/Schwarz/Weiss = Metall des Emblems) + EIN athletischer
+   Grün-Akzent. Display: Space Grotesk (präzise, athletisch). Body: Inter
+   (international). ~80% Light; Dark = Hero + Return-to-Sport + CtaBand + Footer.
+   Urban, ruhig, fokussiert. Keine Emojis (Lucide). Keine Heilversprechen.
+   ════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Palette als RGB-Triplets — Single Source of Truth ── */
+  --rgb-ink: 21 23 26;          /* #15171A  Headlines (kühles Near-Black)   */
+  --rgb-ink-soft: 41 45 51;     /* #292D33                                  */
+  --rgb-muted: 85 91 99;        /* #555B63  Fliesstext (AA ~7:1 auf Paper)  */
+  --rgb-muted-light: 101 108 117;/* #656C75 kleine Labels (AA ~4.85 auf Paper) */
+
+  --rgb-paper: 246 247 248;     /* #F6F7F8  kühles Off-White — Haupt-BG     */
+  --rgb-surface: 237 239 242;   /* #EDEFF2  alt. Sektionen                  */
+  --rgb-mist: 228 231 235;      /* #E4E7EB  tieferer kühler Ton             */
+  --rgb-line: 224 227 232;      /* #E0E3E8  Haarlinie                       */
+  --rgb-steel: 152 160 168;     /* #98A0A8  Metall-Akzent (Echo Emblem)     */
+
+  --rgb-dark: 17 20 23;         /* #111417  Hero / dunkle Sektionen         */
+  --rgb-dark-deep: 11 14 16;    /* #0B0E10  Footer-Basis                    */
+  --rgb-dark-soft: 26 30 34;    /* #1A1E22  Elevated auf Dark               */
+
+  --rgb-green: 31 199 119;      /* #1FC777  Akzent auf Dark, Dots, Icons    */
+  --rgb-green-deep: 11 125 70;  /* #0B7D46  Buttons (weisser Text AA)       */
+  --rgb-green-ink: 6 83 46;     /* #06532E  Grün-Text auf Light (AAA)       */
+  --rgb-green-bright: 63 224 141;/* #3FE08D Glow/Hover auf Dark             */
+  --rgb-white: 255 255 255;
+
+  --font-sans: "Inter Variable", Inter, system-ui, -apple-system, sans-serif;
+  --font-display: "Space Grotesk Variable", "Space Grotesk", system-ui, sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  /* neutral-kühle, knackige Schatten (urban, nicht weich-warm) */
+  --shadow-soft: 0 1px 2px rgb(17 20 23 / 0.05), 0 12px 30px -14px rgb(17 20 23 / 0.16);
+  --shadow-lift: 0 2px 6px -2px rgb(17 20 23 / 0.08), 0 28px 56px -24px rgb(17 20 23 / 0.26);
+  --shadow-photo: 0 8px 20px -10px rgb(11 14 16 / 0.30), 0 48px 90px -44px rgb(11 14 16 / 0.50);
+  --header-h: 4.75rem;
+}
+
+/* ════════════════════════ BASE ════════════════════════ */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.7;
+    font-weight: 400;
+    color: rgb(var(--rgb-muted));
+    background: rgb(var(--rgb-paper));
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: rgb(var(--rgb-ink));
+    font-weight: 600;
+    line-height: 1.04;
+    letter-spacing: -0.022em;
+    overflow-wrap: break-word;
+  }
+
+  p, li, dd, dt, blockquote, figcaption { overflow-wrap: break-word; }
+
+  a { color: inherit; text-decoration: none; }
+  strong, b { color: rgb(var(--rgb-ink)); font-weight: 600; }
+  ::selection { background: rgb(var(--rgb-green) / 0.28); color: rgb(var(--rgb-ink)); }
+  img { max-width: 100%; display: block; }
+
+  :focus-visible {
+    outline: 3px solid rgb(var(--rgb-green-deep));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ════════════════════════ COMPONENTS ════════════════════════ */
+@layer components {
+
+  .container-px { max-width: 80rem; margin-inline: auto; padding-inline: 1.35rem; }
+  @media (min-width: 768px) { .container-px { padding-inline: 2.25rem; } }
+  .container-narrow { max-width: 52rem; margin-inline: auto; padding-inline: 1.35rem; }
+  .container-wide { max-width: 88rem; margin-inline: auto; padding-inline: 1.35rem; }
+  @media (min-width: 768px) { .container-wide { padding-inline: 2.25rem; } }
+
+  /* ════════ TYPO-SKALA (Space Grotesk Display) ════════ */
+  .display-1 {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: clamp(2.7rem, 7vw, 5.2rem); line-height: 0.98; letter-spacing: -0.03em;
+    color: rgb(var(--rgb-ink));
+  }
+  .display-2 {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: clamp(2rem, 4.4vw, 3.3rem); line-height: 1.03; letter-spacing: -0.026em;
+    color: rgb(var(--rgb-ink));
+  }
+  .display-3 {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: clamp(1.45rem, 2.6vw, 1.95rem); line-height: 1.12; letter-spacing: -0.02em;
+    color: rgb(var(--rgb-ink));
+  }
+  .lede {
+    font-size: clamp(1.12rem, 1.7vw, 1.4rem); line-height: 1.6;
+    color: rgb(var(--rgb-ink-soft)); font-weight: 400;
+  }
+
+  /* ════════ EYEBROW — getrackte Uppercase + kurze grüne Linie (kein ·-Kicker) ════════ */
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    font-family: var(--font-display); font-size: 0.74rem; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgb(var(--rgb-muted-light));
+  }
+  .eyebrow::before {
+    content: ""; width: 1.6rem; height: 2px; border-radius: 2px;
+    background: rgb(var(--rgb-green-deep)); flex: none;
+  }
+  .eyebrow-on-dark { color: rgb(var(--rgb-green-bright)); }
+  .eyebrow-on-dark::before { background: rgb(var(--rgb-green)); }
+
+  /* ════════ BUTTONS — schlank, präzise (Memory feedback_button_weight) ════════ */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem;
+    font-family: var(--font-sans); font-weight: 600; font-size: 0.95rem;
+    letter-spacing: -0.005em; line-height: 1;
+    padding: 0.82rem 1.4rem; border-radius: var(--radius-pill);
+    border: 1px solid transparent; cursor: pointer;
+    transition: transform .25s cubic-bezier(.2,.7,.3,1), background-color .25s, border-color .25s, box-shadow .25s, color .25s;
+    will-change: transform;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary {
+    background: rgb(var(--rgb-green-deep)); color: rgb(var(--rgb-white));
+    box-shadow: 0 1px 2px rgb(11 125 70 / 0.30), 0 14px 30px -14px rgb(11 125 70 / 0.55);
+  }
+  .btn-primary:hover { background: rgb(var(--rgb-green-ink)); transform: translateY(-2px); box-shadow: 0 2px 4px rgb(11 125 70 / 0.30), 0 20px 40px -16px rgb(11 125 70 / 0.65); }
+  .btn-ghost {
+    background: transparent; color: rgb(var(--rgb-ink));
+    border-color: rgb(var(--rgb-ink) / 0.18);
+  }
+  .btn-ghost:hover { border-color: rgb(var(--rgb-ink) / 0.4); background: rgb(var(--rgb-ink) / 0.04); transform: translateY(-2px); }
+  .btn-on-dark { background: rgb(var(--rgb-white)); color: rgb(var(--rgb-ink)); }
+  .btn-on-dark:hover { background: rgb(var(--rgb-white) / 0.88); transform: translateY(-2px); }
+  .btn-ghost-dark { background: transparent; color: rgb(var(--rgb-white)); border-color: rgb(var(--rgb-white) / 0.28); }
+  .btn-ghost-dark:hover { border-color: rgb(var(--rgb-white) / 0.6); background: rgb(var(--rgb-white) / 0.08); transform: translateY(-2px); }
+  .btn-sm { padding: 0.6rem 1.05rem; font-size: 0.875rem; }
+  .btn-lg { padding: 0.95rem 1.7rem; font-size: 1rem; }
+
+  /* Text-Link mit Pfeil (sekundärer CTA) */
+  .link-arrow {
+    display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 600;
+    color: rgb(var(--rgb-ink)); border-bottom: 1px solid rgb(var(--rgb-green-deep) / 0.5);
+    padding-bottom: 1px; transition: gap .2s, border-color .2s, color .2s;
+  }
+  .link-arrow:hover { gap: 0.65rem; color: rgb(var(--rgb-green-ink)); border-color: rgb(var(--rgb-green-deep)); }
+
+  /* ════════ CARDS ════════ */
+  .card {
+    background: rgb(var(--rgb-white)); border: 1px solid rgb(var(--rgb-line));
+    border-radius: var(--radius-lg); box-shadow: var(--shadow-soft);
+    transition: transform .35s cubic-bezier(.2,.7,.3,1), box-shadow .35s, border-color .35s;
+  }
+  .card-hover:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); border-color: rgb(var(--rgb-green-deep) / 0.4); }
+  .card-dark {
+    background: rgb(var(--rgb-dark-soft)); border: 1px solid rgb(var(--rgb-white) / 0.08);
+    border-radius: var(--radius-lg);
+  }
+
+  /* Icon-Chip (Lucide im runden Träger) */
+  .icon-chip {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 3rem; height: 3rem; border-radius: var(--radius-md);
+    background: rgb(var(--rgb-green-deep) / 0.10); color: rgb(var(--rgb-green-ink));
+    border: 1px solid rgb(var(--rgb-green-deep) / 0.16);
+  }
+  .icon-chip-dark {
+    background: rgb(var(--rgb-green) / 0.14); color: rgb(var(--rgb-green-bright));
+    border-color: rgb(var(--rgb-green) / 0.24);
+  }
+
+  /* Logo-Coin — weisses Emblem auf hellen Flächen sichtbar machen (Logo nie umfärben) */
+  .logo-coin {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: rgb(var(--rgb-dark)); border-radius: var(--radius-pill);
+    flex: none;
+  }
+
+  /* ════════ DARK SECTION ════════ */
+  .section-dark { background: rgb(var(--rgb-dark)); color: rgb(var(--rgb-white) / 0.78); position: relative; }
+  .section-dark h1, .section-dark h2, .section-dark h3, .section-dark h4 { color: rgb(var(--rgb-white)); }
+  .section-dark strong { color: rgb(var(--rgb-white)); }
+  /* subtiler grüner Glow oben links */
+  .glow-green::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(60% 50% at 15% 0%, rgb(31 199 119 / 0.12), transparent 70%);
+  }
+
+  /* ════════ SPRACHSCHALTER (Pill) ════════ */
+  .lang-pill {
+    display: inline-flex; align-items: center; gap: 2px; padding: 3px;
+    border-radius: var(--radius-pill); background: rgb(var(--rgb-ink) / 0.06);
+    border: 1px solid rgb(var(--rgb-ink) / 0.08);
+  }
+  .lang-pill-dark { background: rgb(var(--rgb-white) / 0.08); border-color: rgb(var(--rgb-white) / 0.12); }
+  .lang-opt {
+    font-family: var(--font-display); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em;
+    padding: 0.28rem 0.55rem; border-radius: var(--radius-pill); color: inherit;
+    transition: background-color .2s, color .2s;
+  }
+  .lang-opt[aria-current="true"] { background: rgb(var(--rgb-green-deep)); color: rgb(var(--rgb-white)); }
+  .lang-opt[aria-disabled="true"] { opacity: 0.45; cursor: not-allowed; }
+
+  /* kleiner Status-/Trust-Dot */
+  .dot {
+    width: 7px; height: 7px; border-radius: 50%; background: rgb(var(--rgb-green));
+    box-shadow: 0 0 0 0 rgb(31 199 119 / 0.55); animation: pulse-dot 2.6s infinite;
+  }
+
+  /* Tag/Pill (z. B. „DE · EN · RU") */
+  .tag {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    font-family: var(--font-display); font-size: 0.76rem; font-weight: 600; letter-spacing: 0.04em;
+    padding: 0.38rem 0.8rem; border-radius: var(--radius-pill);
+    border: 1px solid rgb(var(--rgb-line)); background: rgb(var(--rgb-white)); color: rgb(var(--rgb-ink-soft));
+  }
+  .tag-dark { background: rgb(var(--rgb-white) / 0.06); border-color: rgb(var(--rgb-white) / 0.14); color: rgb(var(--rgb-white) / 0.9); }
+
+  /* feine Trennlinie über volle Breite */
+  .hairline { height: 1px; background: rgb(var(--rgb-line)); border: 0; }
+
+  /* ════════ LEGAL PROSE (Impressum / Datenschutz) ════════ */
+  .legal-prose { color: rgb(var(--rgb-muted)); font-size: 1rem; line-height: 1.75; }
+  .legal-prose h2 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: rgb(var(--rgb-ink)); margin-top: 2.4rem; margin-bottom: 0.7rem; }
+  .legal-prose h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; color: rgb(var(--rgb-ink)); margin-top: 1.6rem; margin-bottom: 0.4rem; }
+  .legal-prose h2:first-child { margin-top: 0; }
+  .legal-prose p { margin-bottom: 1rem; }
+  .legal-prose a { color: rgb(var(--rgb-green-ink)); border-bottom: 1px solid rgb(var(--rgb-green-deep) / 0.4); }
+  .legal-prose a:hover { border-color: rgb(var(--rgb-green-deep)); }
+  .legal-prose ul { list-style: disc; padding-left: 1.3rem; margin-bottom: 1rem; }
+  .legal-prose li { margin-bottom: 0.4rem; }
+
+  /* Operator-Platzhalter — sichtbar zu vervollständigen */
+  .op {
+    display: inline; padding: 0.05em 0.45em; border-radius: 6px;
+    background: rgb(var(--rgb-green-deep) / 0.12); color: rgb(var(--rgb-green-ink));
+    border: 1px dashed rgb(var(--rgb-green-deep) / 0.45);
+    font-weight: 600; font-size: 0.92em;
+  }
+}
+
+/* ════════════════════════ KEYFRAMES (außerhalb @layer — Tailwind v3 purge-safe) ════════ */
+@keyframes pulse-dot {
+  0% { box-shadow: 0 0 0 0 rgb(31 199 119 / 0.5); }
+  70% { box-shadow: 0 0 0 9px rgb(31 199 119 / 0); }
+  100% { box-shadow: 0 0 0 0 rgb(31 199 119 / 0); }
+}
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ════════════════════════ REVEAL ON SCROLL ════════════════════════ */
+[data-reveal] { opacity: 0; }
+.js [data-reveal].is-in { animation: reveal-up 0.7s cubic-bezier(.2,.7,.3,1) both; animation-delay: var(--rd, 0ms); }
+/* Fallback: ohne JS nie unsichtbar bleiben */
+html:not(.js) [data-reveal] { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1 !important; animation: none !important; transform: none !important; }
+}
+
+/* Utilities */
+.text-balance { text-wrap: balance; }
+.text-grad-steel {
+  background: linear-gradient(180deg, rgb(var(--rgb-white)), rgb(var(--rgb-steel)));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}

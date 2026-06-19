@@ -1,0 +1,216 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import MapBlock from '../components/MapBlock.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site, cta, addressOneLine } from '../data/site';
+import { pillars, rtsPhases, international } from '../data/content';
+
+const pillarHref: Record<string, string> = {
+  'physiotherapy': '/leistungen#physiotherapy',
+  'return-to-sport': '/return-to-sport',
+  'return-to-activity': '/leistungen#return-to-activity',
+};
+---
+<Layout
+  title={site.metaTitle}
+  current="/"
+  heroPreload={{ srcset: '/images/hero-sm.webp 1000w, /images/hero.webp 2000w', sizes: '100vw' }}
+>
+  <!-- ══════════════ HERO ══════════════ -->
+  <section class="relative min-h-[90svh] flex items-end section-dark overflow-hidden">
+    <img
+      src="/images/hero.webp"
+      srcset="/images/hero-sm.webp 1000w, /images/hero.webp 2000w"
+      sizes="100vw"
+      alt="Läufer in Bewegung im Dunkeln - Return to Sport"
+      width="2000" height="1334"
+      fetchpriority="high" decoding="async"
+      class="absolute inset-0 w-full h-full object-cover"
+      style="object-position: 62% center;"
+    />
+    <div class="absolute inset-0" style="background: linear-gradient(105deg, rgb(8 10 12 / 0.92) 28%, rgb(8 10 12 / 0.55) 65%, rgb(8 10 12 / 0.35));" aria-hidden="true"></div>
+    <div class="absolute inset-x-0 bottom-0 h-40" style="background: linear-gradient(to top, rgb(8 10 12 / 0.9), transparent);" aria-hidden="true"></div>
+
+    <div class="container-px relative w-full pt-32 pb-16 md:pb-24">
+      <div class="max-w-3xl">
+        <span class="eyebrow eyebrow-on-dark mb-6">Return to Sport · Berlin-Mitte</span>
+        <h1 class="display-1 text-white text-balance" style="text-shadow: 0 2px 30px rgb(0 0 0 / 0.4);">
+          Zurück in den Sport.<br />Zurück in Bewegung.
+        </h1>
+        <p class="mt-6 text-lg md:text-xl text-white/80 leading-relaxed max-w-xl" style="text-shadow: 0 1px 12px rgb(0 0 0 / 0.5);">
+          Physiotherapie & Sport-Reha in Berlin-Mitte. Leistungsorientierte Reha,
+          die nicht beim Schmerz aufhört - sondern dort, wo Sie wieder loslegen.
+        </p>
+        <div class="mt-9 flex flex-col sm:flex-row gap-3">
+          <a href={cta.book.href} target="_blank" rel="noopener" class="btn btn-primary btn-lg">{cta.book.label}<Icon name="ArrowUpRight" size={18} strokeWidth={2.2} /></a>
+          <a href={cta.phone.href} class="btn btn-ghost-dark btn-lg"><Icon name="Phone" size={17} strokeWidth={2.2} />{cta.phone.label}</a>
+        </div>
+        <!-- Drei verbatim Säulen -->
+        <div class="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 text-white/55 text-sm">
+          {pillars.map((p, i) => (
+            <>
+              {i > 0 && <span class="text-green/70" aria-hidden="true">/</span>}
+              <span class="font-display tracking-wide">{p.term}</span>
+            </>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ WAS WIR MACHEN — 3 Säulen ══════════════ -->
+  <section class="py-20 md:py-28 bg-paper">
+    <div class="container-px">
+      <SectionHeading
+        eyebrow="Was wir machen"
+        title="Da, wo Reha eigentlich <span class='text-green-ink'>anfängt</span>."
+        intro="Bewegung ist das Ziel, nicht die Behandlung an sich. Wir bringen Sie zurück - in den Sport, in den Alltag, in Ihre Bewegung."
+      />
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 mt-12">
+        {pillars.map((p, i) => (
+          <a href={pillarHref[p.slug]} class="card card-hover p-7 md:p-8 flex flex-col group" data-reveal style={`--rd:${i * 90}ms`}>
+            <span class="icon-chip mb-6"><Icon name={p.icon} size={24} strokeWidth={1.75} /></span>
+            <span class="block font-display text-xl md:text-2xl font-semibold text-ink leading-tight">{p.term}</span>
+            <span class="block text-muted-light text-sm mt-1 mb-3">{p.titleDe}</span>
+            <p class="text-[0.97rem] leading-relaxed text-muted flex-1">{p.blurb}</p>
+            <span class="link-arrow mt-6 self-start text-[0.92rem]">Mehr erfahren<Icon name="ArrowRight" size={15} strokeWidth={2.2} class="transition-transform group-hover:translate-x-0.5" /></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ RETURN TO SPORT — Dark-Feature ══════════════ -->
+  <section class="section-dark glow-green relative overflow-hidden py-20 md:py-28">
+    <div class="container-px relative">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div data-reveal>
+          <span class="eyebrow eyebrow-on-dark mb-6">Return to Sport</span>
+          <h2 class="display-2 text-white text-balance mb-6">Die Reha hört nicht beim Schmerz auf.</h2>
+          <p class="text-white/72 text-lg leading-relaxed mb-4">
+            Schmerzfrei ist nicht das Ziel - belastbar ist das Ziel. Return to Sport heisst:
+            Wir arbeiten weiter, bis Sie wieder das tun können, wofür Sie hier sind.
+          </p>
+          <p class="text-white/72 text-lg leading-relaxed mb-8">
+            Für Athletinnen und Athleten, aktive Menschen und alle, die nach Verletzung
+            oder OP wieder an ihr Niveau anknüpfen wollen.
+          </p>
+          <a href="/return-to-sport" class="link-arrow text-white" style="border-color: rgb(var(--rgb-green) / 0.6);">So funktioniert Return to Sport<Icon name="ArrowRight" size={16} strokeWidth={2.2} /></a>
+        </div>
+        <div data-reveal style="--rd:120ms">
+          <div class="relative overflow-hidden rounded-[22px] border border-white/10 aspect-[4/5] lg:min-h-[460px]" style="box-shadow: var(--shadow-photo); background: rgb(var(--rgb-dark-soft));">
+            <img src="/images/return-to-sport.webp" alt="Athlet mit Sportprothese beim Lauftraining" width="720" height="900" loading="lazy" class="w-full h-full object-cover" />
+          </div>
+        </div>
+      </div>
+
+      <!-- 3-Phasen (allgemeines Prinzip, keine erfundenen Protokolle) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-14">
+        {rtsPhases.map((ph, i) => (
+          <div class="card-dark p-7" data-reveal style={`--rd:${i * 90}ms`}>
+            <span class="font-display text-green-bright text-sm font-semibold tracking-widest">{ph.step}</span>
+            <h3 class="font-display text-white text-xl font-semibold mt-3 mb-2.5">{ph.title}</h3>
+            <p class="text-white/65 text-[0.95rem] leading-relaxed">{ph.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ DIE PRAXIS — echtes Foto ══════════════ -->
+  <section class="py-20 md:py-28 bg-paper">
+    <div class="container-px">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div data-reveal>
+          <div class="relative overflow-hidden rounded-[22px] border border-line aspect-[4/5] sm:aspect-[5/4] lg:aspect-[4/5] lg:min-h-[480px]" style="box-shadow: var(--shadow-photo); background: rgb(var(--rgb-mist));">
+            <img src="/images/raum.webp" srcset="/images/raum-sm.webp 760w, /images/raum.webp 1200w" sizes="(min-width:1024px) 40vw, 90vw" alt="Trainingsraum von Backroom Physio in Berlin-Mitte" width="1125" height="2000" loading="lazy" class="w-full h-full object-cover" />
+            <span class="absolute bottom-4 left-4 tag tag-dark"><span class="dot"></span>Unser Raum · Linienstraße</span>
+          </div>
+        </div>
+        <div data-reveal style="--rd:120ms">
+          <span class="eyebrow mb-5">Die Praxis</span>
+          <h2 class="display-2 text-balance mb-6">Mitten in Berlin-Mitte. Da, wo trainiert wird.</h2>
+          <p class="lede mb-4">
+            Backroom Physio ist eine Praxis für Physiotherapie und Sport-Rehabilitation
+            in der Linienstraße - ein fokussierter Ort, an dem aktiv gearbeitet wird, nicht nur behandelt.
+          </p>
+          <p class="text-muted leading-relaxed mb-8">
+            Mitte ist international, und so arbeiten wir auch: Behandlung auf Deutsch,
+            Englisch und Russisch. Termine laufen unkompliziert über Doctolib.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <a href="/ueber-uns" class="btn btn-ghost">Mehr über uns<Icon name="ArrowRight" size={16} strokeWidth={2.2} /></a>
+            <a href={cta.book.href} target="_blank" rel="noopener" class="btn btn-primary">Termin über Doctolib<Icon name="ArrowUpRight" size={16} strokeWidth={2.2} /></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ INTERNATIONAL / Sprachen ══════════════ -->
+  <section class="py-16 md:py-20" style="background: rgb(var(--rgb-surface));">
+    <div class="container-px">
+      <div class="rounded-[24px] border border-line bg-paper p-8 md:p-12 flex flex-col lg:flex-row lg:items-center gap-9 lg:gap-14" data-reveal style="box-shadow: var(--shadow-soft);">
+        <div class="flex-1">
+          <span class="eyebrow mb-5"><Icon name="Languages" size={14} strokeWidth={2} /> International</span>
+          <h2 class="display-3 text-balance mb-4 font-display" style="font-weight:600;">{international.headlineEn}</h2>
+          <p class="text-muted leading-relaxed max-w-xl">{international.textDe}</p>
+        </div>
+        <div class="flex flex-wrap gap-3 lg:flex-col lg:gap-3 flex-none">
+          {international.langs.map((l) => (
+            <span class="tag"><span class="font-display font-semibold text-ink">{l.code}</span><span class="text-muted">{l.label}</span></span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ KONTAKT + ANFAHRT + TERMIN ══════════════ -->
+  <section id="kontakt" class="py-20 md:py-28 bg-paper">
+    <div class="container-px">
+      <SectionHeading
+        eyebrow="Kontakt & Termin"
+        title="Kurzer Weg zum <span class='text-green-ink'>ersten Termin</span>."
+        intro="Buchen Sie direkt online über Doctolib oder melden Sie sich telefonisch. Wir sind in Berlin-Mitte, gut erreichbar."
+      />
+      <div class="grid lg:grid-cols-2 gap-6 lg:gap-10 mt-12 items-stretch">
+        <!-- Tiles -->
+        <div class="grid sm:grid-cols-2 gap-4 content-start">
+          <a href={cta.book.href} target="_blank" rel="noopener" class="card card-hover p-6 sm:col-span-2 flex items-center gap-5 group">
+            <span class="icon-chip flex-none"><Icon name="CalendarCheck" size={24} strokeWidth={1.8} /></span>
+            <span class="flex-1">
+              <span class="block font-display text-lg font-semibold text-ink">Termin über Doctolib</span>
+              <span class="block text-muted text-sm">Online buchen - jederzeit, ohne Wartemusik</span>
+            </span>
+            <Icon name="ArrowUpRight" size={20} strokeWidth={2} class="text-green-deep transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
+          <a href={cta.phone.href} class="card card-hover p-6 flex flex-col gap-3">
+            <span class="icon-chip"><Icon name="Phone" size={21} strokeWidth={1.9} /></span>
+            <span><span class="block text-muted-light text-xs uppercase tracking-wider font-display">Telefon</span><span class="block font-display text-base font-semibold text-ink mt-0.5">{site.phoneDisplay}</span></span>
+          </a>
+          <a href={`mailto:${site.email}`} class="card card-hover p-6 flex flex-col gap-3">
+            <span class="icon-chip"><Icon name="Mail" size={21} strokeWidth={1.9} /></span>
+            <span><span class="block text-muted-light text-xs uppercase tracking-wider font-display">E-Mail</span><span class="block font-display text-[0.95rem] font-semibold text-ink mt-0.5 break-all">{site.email}</span></span>
+          </a>
+          <div class="card p-6 sm:col-span-2 flex items-start gap-4">
+            <span class="icon-chip flex-none"><Icon name="MapPin" size={21} strokeWidth={1.9} /></span>
+            <div class="flex-1">
+              <span class="block text-muted-light text-xs uppercase tracking-wider font-display">Standort</span>
+              <span class="block text-ink font-medium mt-0.5">{addressOneLine}</span>
+              <span class="block text-muted text-sm mt-1.5">Termine nach Vereinbarung über Doctolib.</span>
+            </div>
+            <a href={site.instagram} target="_blank" rel="noopener" aria-label="Instagram" class="flex-none w-10 h-10 rounded-full inline-flex items-center justify-center border border-line text-ink/70 hover:text-green-ink hover:border-green-deep/40 transition">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+          </div>
+        </div>
+        <!-- Map -->
+        <MapBlock class="min-h-[380px] lg:min-h-full" />
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

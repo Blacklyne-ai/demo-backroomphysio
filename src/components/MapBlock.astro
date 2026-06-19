@@ -1,0 +1,37 @@
+---
+// DSGVO: Google Maps wird erst auf Klick geladen (kein Tracking ohne Einwilligung).
+// Bis dahin: ruhiger Platzhalter mit Adresse + "Karte laden".
+import { site, addressOneLine } from '../data/site';
+import Icon from './Icon.astro';
+interface Props { class?: string }
+const { class: className = '' } = Astro.props;
+---
+<div class={`relative overflow-hidden rounded-[20px] border border-line ${className}`} style="background: rgb(var(--rgb-surface));">
+  <div class="map-consent w-full h-full min-h-[320px] flex flex-col items-center justify-center text-center p-7"
+       data-embed={site.maps.embed} data-title="Karte - Backroom Physio Berlin">
+    <span class="icon-chip mb-4"><Icon name="MapPin" size={22} strokeWidth={1.8} /></span>
+    <p class="font-display text-lg font-semibold text-ink mb-1">{site.name}</p>
+    <p class="text-muted text-sm mb-5">{addressOneLine}</p>
+    <button type="button" class="map-load btn btn-primary btn-sm"><Icon name="Map" size={15} strokeWidth={2} /> Karte laden</button>
+    <p class="text-muted-light text-xs mt-3 max-w-xs">Mit dem Laden akzeptieren Sie die <a href="/datenschutz" class="underline underline-offset-2">Datenschutzerklärung</a> von Google Maps.</p>
+  </div>
+  <a href={site.maps.url} target="_blank" rel="noopener" class="absolute bottom-4 left-4 btn btn-on-dark btn-sm shadow-lg z-10">
+    <Icon name="Navigation" size={14} strokeWidth={2.2} /> Route berechnen
+  </a>
+</div>
+<script>
+  document.addEventListener('astro:page-load', () => {
+    document.querySelectorAll('.map-consent').forEach((box) => {
+      box.querySelector('.map-load')?.addEventListener('click', () => {
+        const el = box as HTMLElement;
+        const embed = el.dataset.embed;
+        if (!embed) return;
+        const ifr = document.createElement('iframe');
+        ifr.src = embed; ifr.title = el.dataset.title || 'Karte'; ifr.loading = 'lazy';
+        ifr.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+        ifr.style.cssText = 'width:100%;height:100%;min-height:340px;border:0;display:block;';
+        box.replaceWith(ifr);
+      });
+    });
+  });
+</script>

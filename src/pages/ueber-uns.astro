@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import { cta, site, addressOneLine } from '../data/site';
+import { usp, international } from '../data/content';
+---
+<Layout title="Über uns - Praxis in Berlin-Mitte | Backroom Physio" current="/ueber-uns">
+  <PageHero
+    crumb="Über uns"
+    eyebrow="Die Praxis"
+    title="Mitten in Mitte. Fokus auf <span class='text-green-ink'>Rückkehr</span>."
+    subtitle="Backroom Physio ist eine Praxis für Physiotherapie und Sport-Rehabilitation in der Linienstraße - ein fokussierter Ort, an dem aktiv gearbeitet wird."
+    primary={{ href: cta.book.href, label: 'Termin über Doctolib', external: true }}
+    secondary={{ href: '/kontakt', label: 'Kontakt & Anfahrt' }}
+  />
+
+  <!-- Praxis + echtes Foto -->
+  <section class="py-20 md:py-28 bg-paper">
+    <div class="container-px">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div data-reveal>
+          <div class="relative overflow-hidden rounded-[22px] border border-line aspect-[4/5] lg:min-h-[500px]" style="box-shadow: var(--shadow-photo); background: rgb(var(--rgb-mist));">
+            <img src="/images/raum.webp" srcset="/images/raum-sm.webp 760w, /images/raum.webp 1200w" sizes="(min-width:1024px) 45vw, 90vw" alt="Trainingsraum von Backroom Physio in Berlin-Mitte" width="1125" height="2000" loading="lazy" class="w-full h-full object-cover" />
+            <span class="absolute bottom-4 left-4 tag tag-dark"><span class="dot"></span>Unser Raum · Linienstraße</span>
+          </div>
+        </div>
+        <div data-reveal style="--rd:120ms">
+          <span class="eyebrow mb-5">Was uns ausmacht</span>
+          <h2 class="display-2 text-balance mb-6">Ein Ort, an dem trainiert wird - nicht nur behandelt.</h2>
+          <p class="lede mb-4">
+            „Backroom" steht für den Raum hinter den Kulissen, in dem die eigentliche Arbeit
+            passiert. Bei uns ist das ein Trainingsraum: aktiv, fokussiert, ohne Schnickschnack.
+          </p>
+          <p class="text-muted leading-relaxed">
+            Wir verstehen Reha als aktiven Prozess. Statt Sie nur zu behandeln, arbeiten wir
+            mit Ihnen - bis die Belastung wieder trägt und Sie zurück sind, wo Sie hinwollen.
+          </p>
+        </div>
+      </div>
+
+      <!-- USP -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 mt-16 md:mt-24">
+        {usp.map((u, i) => (
+          <div class="card p-7 md:p-8" data-reveal style={`--rd:${i * 90}ms`}>
+            <span class="icon-chip mb-6"><Icon name={u.icon} size={24} strokeWidth={1.75} /></span>
+            <h3 class="font-display text-xl font-semibold text-ink mb-2.5">{u.title}</h3>
+            <p class="text-muted leading-relaxed">{u.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- International (Dark) -->
+  <section class="section-dark glow-green relative overflow-hidden py-20 md:py-24">
+    <div class="container-px relative">
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div data-reveal>
+          <span class="eyebrow eyebrow-on-dark mb-5"><Icon name="Languages" size={14} strokeWidth={2} /> International</span>
+          <h2 class="display-2 text-white text-balance mb-5">{international.headlineEn}</h2>
+          <p class="text-white/70 text-lg leading-relaxed">{international.textDe}</p>
+        </div>
+        <div class="flex flex-wrap gap-3 lg:justify-end" data-reveal style="--rd:120ms">
+          {international.langs.map((l) => (
+            <span class="tag tag-dark text-base px-5 py-3"><span class="font-display font-semibold text-white">{l.code}</span><span class="text-white/65">{l.label}</span></span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

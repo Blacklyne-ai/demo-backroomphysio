@@ -1,0 +1,28 @@
+---
+// Editorial Section-Heading: Eyebrow + Headline (Akzentwort via <span class="text-green-ink">)
+// + optionale Intro/CTA. Ruhig, type-led. set:html erlaubt grünen Akzent im Titel.
+import Icon from './Icon.astro';
+interface Props {
+  eyebrow?: string;
+  title: string;       // darf HTML enthalten (z. B. <span class="text-green-ink">…</span>)
+  intro?: string;
+  align?: 'left' | 'center';
+  light?: boolean;
+  ctaHref?: string;
+  ctaLabel?: string;
+}
+const { eyebrow, title, intro, align = 'left', light = false, ctaHref, ctaLabel } = Astro.props;
+const center = align === 'center';
+---
+<div class={`flex flex-col ${ctaHref ? 'md:flex-row md:items-end md:justify-between gap-6' : center ? 'items-center text-center' : ''}`} data-reveal>
+  <div class={center ? 'max-w-2xl mx-auto' : 'max-w-2xl'}>
+    {eyebrow && <span class={`eyebrow ${light ? 'eyebrow-on-dark' : ''} mb-5`}>{eyebrow}</span>}
+    <h2 class={`display-2 text-balance ${light ? 'text-white' : ''}`} set:html={title} />
+    {intro && <p class={`lede mt-5 ${light ? 'text-white/72' : ''}`}>{intro}</p>}
+  </div>
+  {ctaHref && ctaLabel && (
+    <a href={ctaHref} class={`btn ${light ? 'btn-ghost-dark' : 'btn-ghost'} self-start md:self-auto flex-shrink-0`}>
+      {ctaLabel}<Icon name="ArrowRight" size={15} strokeWidth={2.2} />
+    </a>
+  )}
+</div>
