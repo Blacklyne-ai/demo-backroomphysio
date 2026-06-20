@@ -1,0 +1,8 @@
+{
+  "_hinweis": "Wird von scripts/fetch-reviews.mjs (Google Places API) befuellt. Leer = nur Aggregat-Badge aus site.google, KEINE erfundenen Reviews.",
+  "fetchedAt": null,
+  "rating": 0,
+  "total": 0,
+  "url": "",
+  "reviews": []
+}

@@ -1,0 +1,66 @@
+---
+// Google-Rating-Badge — zeigt echte Sterne NUR bei rating > 0 (Memory: nie faken).
+// Daten aus site.google (verifizierter Snapshot) bzw. reviews.json (live via API).
+import { site } from '../data/site';
+import reviews from '../data/reviews.json';
+interface Props { variant?: 'light' | 'dark' | 'glass'; class?: string; showCount?: boolean }
+const { variant = 'light', class: cls = '', showCount = true } = Astro.props;
+
+// Live-Daten (reviews.json) haben Vorrang vor dem manuellen Snapshot
+const rating = reviews.rating > 0 ? reviews.rating : site.google.rating;
+const count = reviews.total > 0 ? reviews.total : site.google.reviewsCount;
+const url = reviews.url || site.google.reviewsUrl;
+const pct = Math.max(0, Math.min(100, (rating / 5) * 100));
+const ratingStr = rating.toFixed(1).replace('.', ',');
+const stars = [0, 1, 2, 3, 4];
+---
+{rating > 0 && (
+  <a href={url} target="_blank" rel="noopener"
+     class={`review-badge rb-${variant} ${cls}`}
+     aria-label={`${ratingStr} von 5 Sternen bei ${count} Google-Bewertungen`}>
+    <svg class="rb-g" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+      <path fill="#4285F4" d="M23.04 12.26c0-.82-.07-1.6-.21-2.36H12v4.47h6.19a5.3 5.3 0 0 1-2.3 3.48v2.9h3.72c2.18-2 3.43-4.96 3.43-8.49z"/>
+      <path fill="#34A853" d="M12 24c3.1 0 5.7-1.03 7.6-2.79l-3.72-2.9c-1.03.7-2.35 1.1-3.88 1.1-2.98 0-5.5-2.01-6.4-4.72H1.76v2.99A12 12 0 0 0 12 24z"/>
+      <path fill="#FBBC05" d="M5.6 14.69a7.2 7.2 0 0 1 0-4.62V7.08H1.76a12 12 0 0 0 0 10.6l3.84-2.99z"/>
+      <path fill="#EA4335" d="M12 4.77c1.68 0 3.2.58 4.39 1.72l3.29-3.29C17.7 1.2 15.1 0 12 0A12 12 0 0 0 1.76 7.08l3.84 2.99C6.5 7.36 9.02 4.77 12 4.77z"/>
+    </svg>
+    <span class="rb-rating">{ratingStr}</span>
+    <span class="rb-stars" aria-hidden="true">
+      <span class="rb-row rb-bg">{stars.map(() => (<svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg>))}</span>
+      <span class="rb-row rb-fg" style={`width:${pct}%`}>{stars.map(() => (<svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg>))}</span>
+    </span>
+    {showCount && <span class="rb-count">{count} Google&#8209;Bewertungen</span>}
+  </a>
+)}
+<style>
+  .review-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem; white-space: nowrap;
+    padding: 0.5rem 0.85rem; border-radius: 999px; font-size: 0.9rem;
+    transition: transform .25s, border-color .25s, background-color .25s;
+  }
+  .review-badge:hover { transform: translateY(-2px); }
+  .rb-rating { font-family: var(--font-display); font-weight: 600; }
+  .rb-stars { position: relative; display: inline-block; line-height: 0; }
+  .rb-row { display: inline-flex; gap: 1px; }
+  .rb-row svg { width: 15px; height: 15px; display: block; }
+  .rb-bg svg { fill: rgb(var(--rgb-steel) / 0.45); }
+  .rb-fg { position: absolute; inset: 0; overflow: hidden; }
+  .rb-fg svg { fill: #FBBC04; }
+  .rb-count { font-size: 0.82rem; }
+
+  /* Light */
+  .rb-light { background: rgb(var(--rgb-white)); border: 1px solid rgb(var(--rgb-line)); box-shadow: var(--shadow-soft); }
+  .rb-light .rb-rating { color: rgb(var(--rgb-ink)); }
+  .rb-light .rb-count { color: rgb(var(--rgb-muted)); }
+  .rb-light:hover { border-color: rgb(var(--rgb-green-deep) / 0.4); }
+
+  /* Glass (auf Bild/Dunkel) */
+  .rb-glass { background: rgb(255 255 255 / 0.1); border: 1px solid rgb(255 255 255 / 0.2); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+  .rb-glass .rb-rating, .rb-glass .rb-count { color: rgb(var(--rgb-white)); }
+  .rb-glass .rb-bg svg { fill: rgb(255 255 255 / 0.3); }
+
+  /* Dark */
+  .rb-dark { background: rgb(var(--rgb-dark-soft)); border: 1px solid rgb(255 255 255 / 0.1); }
+  .rb-dark .rb-rating, .rb-dark .rb-count { color: rgb(var(--rgb-white)); }
+  .rb-dark .rb-bg svg { fill: rgb(255 255 255 / 0.25); }
+</style>

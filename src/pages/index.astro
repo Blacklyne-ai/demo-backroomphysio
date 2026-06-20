@@ -4,6 +4,8 @@ import Icon from '../components/Icon.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import MapBlock from '../components/MapBlock.astro';
 import CtaBand from '../components/CtaBand.astro';
+import ReviewsSection from '../components/ReviewsSection.astro';
+import ReviewBadge from '../components/ReviewBadge.astro';
 import { site, cta, addressOneLine } from '../data/site';
 import { pillars, rtsPhases, international } from '../data/content';
 
@@ -56,6 +58,7 @@ const pillarHref: Record<string, string> = {
             </>
           ))}
         </div>
+        <div class="mt-7"><ReviewBadge variant="glass" /></div>
       </div>
     </div>
   </section>
@@ -166,6 +169,9 @@ const pillarHref: Record<string, string> = {
       </div>
     </div>
   </section>
+
+  <!-- ══════════════ STIMMEN / GOOGLE-BEWERTUNGEN ══════════════ -->
+  <ReviewsSection />
 
   <!-- ══════════════ KONTAKT + ANFAHRT + TERMIN ══════════════ -->
   <section id="kontakt" class="py-20 md:py-28 bg-paper">

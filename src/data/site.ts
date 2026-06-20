@@ -47,6 +47,19 @@ export const site = {
       'https://www.google.com/maps?q=Backroom+Physio+Berlin,+Linienstra%C3%9Fe+139-140,+10115+Berlin&z=16&output=embed',
     url: 'https://www.google.com/maps/search/?api=1&query=Backroom+Physio+Berlin+Linienstra%C3%9Fe+139-140+10115+Berlin',
   },
+
+  // Google-Bewertungen — ECHT, nie erfunden.
+  // rating/reviewsCount = verifizierter Snapshot (Stand 06/2026, mehrfach belegt: Google-Eintrag
+  // + BranchenPilot). reviewsUrl = echte Place-Reviews (CID aus dem Maps-Scrape).
+  // Live-Einzelreviews + tagesaktuelles Rating: scripts/fetch-reviews.mjs (Google Places API,
+  // ENV GOOGLE_PLACES_API_KEY) -> src/data/reviews.json. ReviewBadge zeigt Sterne nur bei rating>0.
+  google: {
+    placeId: '',                       // optional ChIJ…; sonst löst das Script per Name+Adresse auf
+    cid: '12140041192322802854',
+    rating: 4.9,
+    reviewsCount: 28,
+    reviewsUrl: 'https://www.google.com/maps?cid=12140041192322802854',
+  },
 };
 
 export const addressOneLine = `${site.address.street}, ${site.address.postcode} ${site.address.city}`;

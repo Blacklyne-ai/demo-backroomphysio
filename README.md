@@ -27,6 +27,20 @@ npm run build      # → dist/ (Cloudflare Pages: Build "npm run build", Output 
 - `JUDGEMENT_CALLS.md` — Design-Entscheidungen + **Operator-TODOs** (Impressum/Datenschutz,
   Inhaber, Leistungsliste, Zeiten, Team, Fotos, EN/RU)
 
+## Google-Bewertungen (echt, nie erfunden)
+Rating + Link sind echt (`site.google`, verifizierter Snapshot 4,9★/28). Für **live
+aktualisiertes Rating + einzelne Review-Karten**:
+
+```bash
+GOOGLE_PLACES_API_KEY=dein_key node scripts/fetch-reviews.mjs   # → src/data/reviews.json
+npm run build
+```
+
+Das Script (Google Places API) löst die Place-ID per Name+Adresse auf (oder `PLACE_ID=ChIJ…`),
+holt Rating + Reviews und schreibt `src/data/reviews.json`. `ReviewBadge`/`ReviewsSection`
+zeigen dann automatisch die echten Einzelbewertungen. Ohne Key bleibt es beim verifizierten
+Aggregat-Badge + Link auf Google - **keine Fake-Reviews**. (Kein Client-JS/Widget → DSGVO-schlank.)
+
 ## Inhalt
 Alle echten Texte/Kontaktdaten stammen verbatim aus der Altseite. Nichts erfunden —
 offene Punkte sind in `JUDGEMENT_CALLS.md` als Operator-TODO dokumentiert.

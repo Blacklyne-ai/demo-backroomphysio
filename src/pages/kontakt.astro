@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import MapBlock from '../components/MapBlock.astro';
+import ReviewBadge from '../components/ReviewBadge.astro';
 import Icon from '../components/Icon.astro';
 import { site, cta, addressOneLine } from '../data/site';
 ---
@@ -16,6 +17,7 @@ import { site, cta, addressOneLine } from '../data/site';
 
   <section class="py-16 md:py-24 bg-paper">
     <div class="container-px">
+      <div class="mb-8"><ReviewBadge variant="light" /></div>
       <div class="grid lg:grid-cols-2 gap-6 lg:gap-10 items-stretch">
         <!-- Tiles -->
         <div class="grid sm:grid-cols-2 gap-4 content-start">

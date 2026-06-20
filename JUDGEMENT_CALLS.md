@@ -120,6 +120,13 @@ Web-/Registerrecherche zu Inhaber, Größe, Alter. **Belegt** (mehrere Quellen) 
 ### 4.8 KASSEN / PRIVAT
 - Privatpraxis oder gesetzliche Kassen? (für Mitte-Physio relevant, beeinflusst Copy).
 
-### 4.9 REVIEWS
-- Falls echte Google-Reviews gewünscht: Google Place Details API-Key bereitstellen
-  → Reviews-Sektion kann aktiviert werden. Bis dahin keine Bewertungen.
+### 4.9 REVIEWS  (umgesetzt — echt)
+- **Live:** Aggregat 4,9★ / 28 (verifizierter Snapshot, `site.google`) als Rating-Badge
+  (Hero + Kontakt) + Sektion „Bewertet auf Google" mit Link auf die echten Reviews
+  (CID 12140041192322802854). **Keine erfundenen Reviews.**
+- **Einzel-Reviews live schalten:** `GOOGLE_PLACES_API_KEY` setzen →
+  `node scripts/fetch-reviews.mjs` → `src/data/reviews.json` (siehe README). Dann erscheinen
+  echte Review-Karten + tagesaktuelles Rating automatisch.
+- SchemaOrg `aggregateRating` bewusst **weggelassen** (Google-Richtlinie: kein Self-Markup
+  von Drittanbieter-/eigenen Ratings → Penalty-Risiko). Badge + Link genügen.
+- Rating/Count beim Betreiber bzw. per API gegenchecken (Snapshot kann driften).
