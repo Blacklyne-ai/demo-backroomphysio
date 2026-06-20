@@ -3,8 +3,11 @@
 // Daten aus site.google (verifizierter Snapshot) bzw. reviews.json (live via API).
 import { site } from '../data/site';
 import reviews from '../data/reviews.json';
+import { getLang } from '../i18n/ui';
+import { useT } from '../i18n/t';
 interface Props { variant?: 'light' | 'dark' | 'glass'; class?: string; showCount?: boolean }
 const { variant = 'light', class: cls = '', showCount = true } = Astro.props;
+const t = useT(getLang(Astro.url));
 
 // Live-Daten (reviews.json) haben Vorrang vor dem manuellen Snapshot
 const rating = reviews.rating > 0 ? reviews.rating : site.google.rating;
@@ -29,7 +32,7 @@ const stars = [0, 1, 2, 3, 4];
       <span class="rb-row rb-bg">{stars.map(() => (<svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg>))}</span>
       <span class="rb-row rb-fg" style={`width:${pct}%`}>{stars.map(() => (<svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg>))}</span>
     </span>
-    {showCount && <span class="rb-count">{count} Google&#8209;Bewertungen</span>}
+    {showCount && <span class="rb-count">{count} {t.reviews.countSuffix}</span>}
   </a>
 )}
 <style>

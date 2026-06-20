@@ -1,12 +1,15 @@
 ---
 // Mobile Floating-Bar - schlank (Memory feedback_button_weight / mobile_header_pill).
 import { site, cta } from '../data/site';
+import { getLang } from '../i18n/ui';
+import { useT } from '../i18n/t';
 import Icon from './Icon.astro';
+const t = useT(getLang(Astro.url));
 ---
 <div id="floating-cta" class="floating-mobile fixed bottom-3 left-0 right-0 z-40 px-3 gap-2 pointer-events-none transition-transform duration-300" style="will-change: transform;">
-  <a href={cta.phone.href} class="btn btn-on-dark btn-sm pointer-events-auto flex-1 !shadow-lg" aria-label="Anrufen"><Icon name="Phone" size={15} strokeWidth={2.2} /> Anrufen</a>
-  <a href={cta.book.href} target="_blank" rel="noopener" class="btn btn-primary btn-sm pointer-events-auto flex-[1.4]">Termin · Doctolib</a>
-  <a href={`mailto:${site.email}`} class="btn btn-on-dark btn-sm pointer-events-auto !px-3 !shadow-lg" aria-label="E-Mail schreiben"><Icon name="Mail" size={17} strokeWidth={2.2} /></a>
+  <a href={cta.phone.href} class="btn btn-on-dark btn-sm pointer-events-auto flex-1 !shadow-lg" aria-label={t.common.call}><Icon name="Phone" size={15} strokeWidth={2.2} /> {t.common.call}</a>
+  <a href={cta.book.href} target="_blank" rel="noopener" class="btn btn-primary btn-sm pointer-events-auto flex-[1.4]">{t.common.book} · Doctolib</a>
+  <a href={`mailto:${site.email}`} class="btn btn-on-dark btn-sm pointer-events-auto !px-3 !shadow-lg" aria-label="E-Mail"><Icon name="Mail" size={17} strokeWidth={2.2} /></a>
 </div>
 <style>
   .floating-mobile { display: none; }

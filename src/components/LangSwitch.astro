@@ -1,47 +1,22 @@
 ---
-// DE/EN/RU-Sprachschalter — VORBEREITETER PLATZHALTER (Brief + JUDGEMENT_CALLS).
-// DE aktiv; EN/RU aria-disabled ("in Vorbereitung"). Voll-Übersetzung = Phase 2.
-import { site } from '../data/site';
+// DE/EN/RU-Sprachschalter — echte Routen. Verlinkt die gleiche Seite in der anderen
+// Sprache; existiert sie dort nicht (z. B. Recht nur DE), führt er auf die Startseite.
+import { locales, languages, getLang, basePath, localizedPath, translatedRoutes } from '../i18n/ui';
 interface Props { variant?: 'light' | 'dark' }
 const { variant = 'light' } = Astro.props;
+const lang = getLang(Astro.url);
+const base = basePath(Astro.url);
+const targetFor = (loc: typeof locales[number]) =>
+  translatedRoutes.includes(base) ? localizedPath(base, loc) : localizedPath('', loc);
 ---
-<div class={`lang-switch lang-pill ${variant === 'dark' ? 'lang-pill-dark' : ''}`} role="group" aria-label="Sprache wählen">
-  {site.languages.map((code) => (
-    <button
-      type="button"
+<div class={`lang-pill ${variant === 'dark' ? 'lang-pill-dark' : ''}`} role="group" aria-label="Sprache wählen">
+  {locales.map((loc) => (
+    <a
       class="lang-opt"
-      data-lang={code}
-      aria-current={code === site.primaryLang ? 'true' : undefined}
-      aria-disabled={code === site.primaryLang ? undefined : 'true'}
-      title={code === site.primaryLang ? 'Deutsch' : `${code} - in Vorbereitung`}
-    >{code}</button>
+      href={targetFor(loc)}
+      hreflang={loc}
+      aria-current={loc === lang ? 'true' : undefined}
+      title={languages[loc]}
+    >{loc.toUpperCase()}</a>
   ))}
 </div>
-<script>
-  document.addEventListener('astro:page-load', () => {
-    document.querySelectorAll('.lang-opt[aria-disabled="true"]').forEach((b) => {
-      b.addEventListener('click', () => {
-        const host = b.closest('.lang-switch');
-        if (!host || host.querySelector('.lang-tip')) return;
-        const tip = document.createElement('span');
-        tip.className = 'lang-tip';
-        tip.textContent = `${b.textContent} folgt in Kürze`;
-        host.appendChild(tip);
-        requestAnimationFrame(() => tip.classList.add('show'));
-        setTimeout(() => { tip.classList.remove('show'); setTimeout(() => tip.remove(), 300); }, 1900);
-      });
-    });
-  });
-</script>
-<style>
-  .lang-switch { position: relative; }
-  .lang-tip {
-    position: absolute; top: calc(100% + 8px); right: 0; white-space: nowrap;
-    font-family: var(--font-sans); font-size: 0.72rem; font-weight: 500;
-    padding: 0.35rem 0.6rem; border-radius: 8px;
-    background: rgb(var(--rgb-ink)); color: rgb(var(--rgb-white));
-    box-shadow: var(--shadow-soft); opacity: 0; transform: translateY(-4px);
-    transition: opacity .25s, transform .25s; pointer-events: none; z-index: 70;
-  }
-  .lang-tip.show { opacity: 1; transform: translateY(0); }
-</style>

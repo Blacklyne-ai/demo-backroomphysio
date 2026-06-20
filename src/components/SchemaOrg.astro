@@ -2,8 +2,11 @@
 // Schema.org — eine Physiotherapie-Praxis in Berlin-Mitte. NUR belegte Fakten
 // (Scrape). KEIN erfundenes Rating, KEINE erfundenen Öffnungszeiten (Operator-TODO).
 import { site, addressOneLine } from '../data/site';
+import { getLang } from '../i18n/ui';
+import { useT } from '../i18n/t';
 interface Props { schema?: object | object[] | null }
 const { schema = null } = Astro.props;
+const t = useT(getLang(Astro.url));
 
 const place = {
   '@type': ['MedicalBusiness', 'Physiotherapy'],
@@ -31,7 +34,7 @@ const place = {
   sameAs: [site.instagram],
   potentialAction: {
     '@type': 'ReserveAction',
-    name: 'Termin über Doctolib',
+    name: t.common.bookDoctolib,
     target: site.doctolib,
   },
 };

@@ -8,6 +8,7 @@ import FloatingCTA from '../components/FloatingCTA.astro';
 import CookieBanner from '../components/CookieBanner.astro';
 import SchemaOrg from '../components/SchemaOrg.astro';
 import { site } from '../data/site';
+import { getLang, basePath, hreflangs } from '../i18n/ui';
 
 interface Props {
   title: string;
@@ -30,9 +31,12 @@ const {
 
 const canonical = new URL(Astro.url.pathname, site.url).toString();
 const ogImageUrl = new URL(ogImage, site.url).toString();
+const lang = getLang(Astro.url);
+const alternates = hreflangs(basePath(Astro.url));
+const ogLocale = { de: 'de_DE', en: 'en_US', ru: 'ru_RU' }[lang];
 ---
 <!doctype html>
-<html lang="de">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -44,6 +48,7 @@ const ogImageUrl = new URL(ogImage, site.url).toString();
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="canonical" href={canonical} />
+    {alternates.map((a) => (<link rel="alternate" hreflang={a.lang} href={new URL(a.href, site.url).toString()} />))}
     <meta name="generator" content={Astro.generator} />
 
     <title>{title}</title>
@@ -52,7 +57,7 @@ const ogImageUrl = new URL(ogImage, site.url).toString();
     <meta name="theme-color" content="#111417" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="de_DE" />
+    <meta property="og:locale" content={ogLocale} />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />

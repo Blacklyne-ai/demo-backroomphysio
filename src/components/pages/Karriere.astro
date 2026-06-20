@@ -1,0 +1,68 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../PageHero.astro';
+import Icon from '../Icon.astro';
+import { site } from '../../data/site';
+import { getLang, localizedPath } from '../../i18n/ui';
+import { useT } from '../../i18n/t';
+const lang = getLang(Astro.url);
+const t = useT(lang);
+const c = t.karriere;
+const applyMail = `mailto:${site.email}?subject=${encodeURIComponent('Bewerbung bei Backroom Physio Berlin')}`;
+---
+<Layout title={`${t.nav.karriere} · Backroom Physio Berlin`} description={c.heroSub} current="/karriere">
+  <PageHero crumb={t.nav.karriere} eyebrow={t.nav.karriere} title={c.heroTitle} subtitle={c.heroSub}
+    primary={{ href: applyMail, label: c.apply }}
+    secondary={{ href: localizedPath('ueber-uns', lang), label: t.common.aboutPractice }} />
+
+  <section class="py-20 md:py-28 bg-paper">
+    <div class="container-px">
+      <div class="max-w-2xl mb-12" data-reveal>
+        <span class="eyebrow mb-5">{c.whyEyebrow}</span>
+        <h2 class="display-2 text-balance">{c.whyTitle}</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+        {c.why.map((w, i) => (
+          <div class="card p-7 md:p-8 flex items-start gap-5" data-reveal style={`--rd:${i * 80}ms`}>
+            <span class="icon-chip flex-none"><Icon name={w.icon} size={24} strokeWidth={1.75} /></span>
+            <div>
+              <h3 class="font-display text-xl font-semibold text-ink mb-2">{w.title}</h3>
+              <p class="text-muted leading-relaxed">{w.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-dark glow-green relative overflow-hidden py-20 md:py-28">
+    <div class="container-px relative">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
+        <div data-reveal>
+          <span class="eyebrow eyebrow-on-dark mb-5">{c.whoEyebrow}</span>
+          <h2 class="display-2 text-white text-balance mb-7">{c.whoTitle}</h2>
+          <ul class="space-y-4">
+            {c.profile.map((item) => (
+              <li class="flex items-start gap-3 text-white/80 leading-relaxed">
+                <span class="icon-chip-dark flex-none w-8 h-8 rounded-lg"><Icon name="Check" size={16} strokeWidth={2.4} /></span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div data-reveal style="--rd:120ms">
+          <div class="card-dark h-full p-8 md:p-10 flex flex-col">
+            <span class="eyebrow eyebrow-on-dark mb-5">{c.jobsEyebrow}</span>
+            <h3 class="display-3 text-white font-display mb-4" style="font-weight:600;">{c.jobsTitle}</h3>
+            <p class="text-white/70 leading-relaxed mb-2">{c.jp1}</p>
+            <p class="text-white/70 leading-relaxed mb-8">{c.jp2}</p>
+            <div class="mt-auto flex flex-col sm:flex-row gap-3">
+              <a href={applyMail} class="btn btn-primary"><Icon name="Mail" size={16} strokeWidth={2.1} />{c.applyNow}</a>
+              <a href={`tel:${site.phoneIntl}`} class="btn btn-ghost-dark">{site.phoneDisplay}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

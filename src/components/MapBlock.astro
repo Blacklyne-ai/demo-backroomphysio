@@ -1,10 +1,12 @@
 ---
-// DSGVO: Google Maps wird erst auf Klick geladen (kein Tracking ohne Einwilligung).
-// Bis dahin: ruhiger Platzhalter mit Adresse + "Karte laden".
+// DSGVO: Google Maps wird erst auf Klick geladen. Texte aus i18n. Datenschutz nur DE.
 import { site, addressOneLine } from '../data/site';
+import { getLang } from '../i18n/ui';
+import { useT } from '../i18n/t';
 import Icon from './Icon.astro';
 interface Props { class?: string }
 const { class: className = '' } = Astro.props;
+const t = useT(getLang(Astro.url));
 ---
 <div class={`relative overflow-hidden rounded-[20px] border border-line ${className}`} style="background: rgb(var(--rgb-surface));">
   <div class="map-consent w-full h-full min-h-[320px] flex flex-col items-center justify-center text-center p-7"
@@ -12,11 +14,11 @@ const { class: className = '' } = Astro.props;
     <span class="icon-chip mb-4"><Icon name="MapPin" size={22} strokeWidth={1.8} /></span>
     <p class="font-display text-lg font-semibold text-ink mb-1">{site.name}</p>
     <p class="text-muted text-sm mb-5">{addressOneLine}</p>
-    <button type="button" class="map-load btn btn-primary btn-sm"><Icon name="Map" size={15} strokeWidth={2} /> Karte laden</button>
-    <p class="text-muted-light text-xs mt-3 max-w-xs">Mit dem Laden akzeptieren Sie die <a href="/datenschutz" class="underline underline-offset-2">Datenschutzerklärung</a> von Google Maps.</p>
+    <button type="button" class="map-load btn btn-primary btn-sm"><Icon name="Map" size={15} strokeWidth={2} /> {t.map.load}</button>
+    <p class="text-muted-light text-xs mt-3 max-w-xs"><a href="/datenschutz" class="underline underline-offset-2">{t.map.consent}</a></p>
   </div>
   <a href={site.maps.url} target="_blank" rel="noopener" class="absolute bottom-4 left-4 btn btn-on-dark btn-sm shadow-lg z-10">
-    <Icon name="Navigation" size={14} strokeWidth={2.2} /> Route berechnen
+    <Icon name="Navigation" size={14} strokeWidth={2.2} /> {t.map.directionsBtn}
   </a>
 </div>
 <script>

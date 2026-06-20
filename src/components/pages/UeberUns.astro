@@ -1,0 +1,88 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../PageHero.astro';
+import CtaBand from '../CtaBand.astro';
+import Icon from '../Icon.astro';
+import { cta } from '../../data/site';
+import { getLang, localizedPath } from '../../i18n/ui';
+import { useT } from '../../i18n/t';
+const lang = getLang(Astro.url);
+const t = useT(lang);
+const a = t.about;
+---
+<Layout title={`${t.nav.ueber} · Backroom Physio Berlin`} description={a.heroSub} current="/ueber-uns">
+  <PageHero crumb={t.nav.ueber} eyebrow={t.home.praxisEyebrow} title={a.heroTitle} subtitle={a.heroSub}
+    primary={{ href: cta.book.href, label: t.common.bookDoctolib, external: true }}
+    secondary={{ href: localizedPath('kontakt', lang), label: t.common.contactDirections }} />
+
+  <section class="py-20 md:py-28 bg-paper">
+    <div class="container-px">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div data-reveal>
+          <div class="relative overflow-hidden rounded-[22px] border border-line aspect-[4/5] lg:min-h-[500px]" style="box-shadow: var(--shadow-photo); background: rgb(var(--rgb-mist));">
+            <img src="/images/raum2.webp" srcset="/images/raum2-sm.webp 640w, /images/raum2.webp 974w" sizes="(min-width:1024px) 45vw, 90vw" alt="Trainingsraum von Backroom Physio in Berlin-Mitte" width="974" height="1534" loading="lazy" class="w-full h-full object-cover" />
+            <span class="absolute bottom-4 left-4 tag tag-dark"><span class="dot"></span>{t.home.room}</span>
+          </div>
+        </div>
+        <div data-reveal style="--rd:120ms">
+          <span class="eyebrow mb-5">{a.whatEyebrow}</span>
+          <h2 class="display-2 text-balance mb-6">{a.whatTitle}</h2>
+          <p class="lede mb-4">{a.p1}</p>
+          <p class="text-muted leading-relaxed">{a.p2}</p>
+        </div>
+      </div>
+
+      <!-- Gründer -->
+      <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-stretch mt-16 md:mt-24">
+        <div class="lg:col-span-5" data-reveal>
+          <div class="card-dark h-full p-8 flex flex-col justify-between" style="background: rgb(var(--rgb-dark)); min-height: 340px;">
+            <div>
+              <span class="logo-coin w-14 h-14 mb-7" style="background: rgb(var(--rgb-dark-soft));">
+                <img src="/logo.png" alt="Backroom Physio Emblem" width="605" height="503" class="h-7 w-auto" loading="lazy" />
+              </span>
+              <p class="font-display text-2xl font-semibold text-white">Sergey Bogdanov</p>
+              <p class="text-green-bright mt-1.5">{a.founderRole}</p>
+            </div>
+            <div class="flex flex-wrap gap-2 mt-8">
+              {a.founderTags.map((tag) => (<span class="tag tag-dark text-xs">{tag}</span>))}
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-7 flex flex-col justify-center" data-reveal style="--rd:120ms">
+          <span class="eyebrow mb-5">{a.founderEyebrow}</span>
+          <h2 class="display-3 text-balance mb-5 font-display" style="font-weight:600;">{a.founderTitle}</h2>
+          <p class="text-muted leading-relaxed mb-4">{a.fp1}</p>
+          <p class="text-muted leading-relaxed">{a.fp2}</p>
+        </div>
+      </div>
+
+      <!-- USP -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 mt-16 md:mt-24">
+        {t.usp.map((u, i) => (
+          <div class="card p-7 md:p-8" data-reveal style={`--rd:${i * 90}ms`}>
+            <span class="icon-chip mb-6"><Icon name={u.icon} size={24} strokeWidth={1.75} /></span>
+            <h3 class="font-display text-xl font-semibold text-ink mb-2.5">{u.title}</h3>
+            <p class="text-muted leading-relaxed">{u.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-dark glow-green relative overflow-hidden py-20 md:py-24">
+    <div class="container-px relative">
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div data-reveal>
+          <span class="eyebrow eyebrow-on-dark mb-5"><Icon name="Languages" size={14} strokeWidth={2} /> {t.intl.eyebrow}</span>
+          <h2 class="display-2 text-white text-balance mb-5">{t.intl.headline}</h2>
+          <p class="text-white/70 text-lg leading-relaxed">{t.intl.text}</p>
+        </div>
+        <div class="flex flex-wrap gap-3 lg:justify-end" data-reveal style="--rd:120ms">
+          {t.intl.langs.map((l) => (<span class="tag tag-dark text-base px-5 py-3"><span class="font-display font-semibold text-white">{l.code}</span><span class="text-white/65">{l.label}</span></span>))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

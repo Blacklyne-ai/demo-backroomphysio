@@ -4,25 +4,28 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
 // ─────────────────────────────────────────────────────────────
-// Hahn Physiotherapie — STATIC build. No adapter, no SSR.
-// Output: /dist with plain HTML files.
-// Deploy target: Cloudflare PAGES
+// Backroom Physio Berlin — STATIC build. No adapter, no SSR.
+// Output: /dist with plain HTML files. Deploy: Cloudflare PAGES
 //   Framework preset: Astro · Build: npm run build · Output: dist
 // Tailwind v3.4 via @astrojs/tailwind (v4 breaks Cloudflare Pages).
+// Dreisprachig: DE (Root), EN (/en/), RU (/ru/). Recht (Impressum/Datenschutz) nur DE.
 // ─────────────────────────────────────────────────────────────
 export default defineConfig({
-  site: 'https://demo-hahn-physiotherapie.pages.dev',
+  site: 'https://demo-backroomphysio.pages.dev',
+  i18n: {
+    defaultLocale: 'de',
+    locales: ['de', 'en', 'ru'],
+    routing: { prefixDefaultLocale: false },
+  },
   integrations: [
     tailwind({ applyBaseStyles: false }),
-    // noindex-Seiten (Impressum/Datenschutz) nicht in die Sitemap
-    sitemap({ filter: (page) => !/\/(impressum|datenschutz)\/?$/.test(page) }),
+    sitemap({
+      i18n: { defaultLocale: 'de', locales: { de: 'de-DE', en: 'en-US', ru: 'ru-RU' } },
+      filter: (page) => !/\/(impressum|datenschutz)\/?$/.test(page),
+    }),
   ],
-  // /seite.html statt /seite/index.html → Cloudflare serviert die internen
-  // No-Trailing-Slash-Links (/badewasser) direkt mit 200, ohne 308-Redirect-Hop.
   build: {
     format: 'file',
-    // CSS inline (Memory feedback_corporate_scale): kein render-blockierender
-    // Stylesheet-Roundtrip; Cloudflare-Brotli macht die HTML-Größe wett
     inlineStylesheets: 'always',
   },
 });

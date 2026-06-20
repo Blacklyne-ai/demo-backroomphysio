@@ -1,0 +1,75 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../PageHero.astro';
+import CtaBand from '../CtaBand.astro';
+import Icon from '../Icon.astro';
+import { cta } from '../../data/site';
+import { getLang, localizedPath } from '../../i18n/ui';
+import { useT } from '../../i18n/t';
+const lang = getLang(Astro.url);
+const t = useT(lang);
+const r = t.rts;
+---
+<Layout title={`Return to Sport · Backroom Physio Berlin`} description={r.heroSub} current="/return-to-sport">
+  <PageHero crumb="Return to Sport" eyebrow="Return to Sport" title={r.heroTitle} subtitle={r.heroSub}
+    primary={{ href: cta.book.href, label: t.common.bookDoctolib, external: true }}
+    secondary={{ href: localizedPath('leistungen', lang), label: t.common.allServices }} />
+
+  <section class="py-20 md:py-28 bg-paper">
+    <div class="container-px">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div data-reveal>
+          <span class="eyebrow mb-5">{r.ideaEyebrow}</span>
+          <h2 class="display-2 text-balance mb-6">{r.ideaTitle}</h2>
+          <p class="lede mb-4">{r.p1}</p>
+          <p class="text-muted leading-relaxed mb-4">{r.p2}</p>
+          <p class="text-muted leading-relaxed" set:html={r.p3html} />
+        </div>
+        <div data-reveal style="--rd:120ms">
+          <div class="relative overflow-hidden rounded-[22px] border border-line aspect-[4/5] lg:min-h-[480px]" style="box-shadow: var(--shadow-photo); background: rgb(var(--rgb-mist));">
+            <img src="/images/return-to-sport.webp" alt="Athlet mit Sportprothese beim Lauftraining" width="720" height="900" loading="lazy" class="w-full h-full object-cover" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-dark glow-green relative overflow-hidden py-20 md:py-28">
+    <div class="container-px relative">
+      <div class="max-w-2xl mb-14" data-reveal>
+        <span class="eyebrow eyebrow-on-dark mb-5">{r.howEyebrow}</span>
+        <h2 class="display-2 text-white text-balance mb-5">{r.howTitle}</h2>
+        <p class="text-white/70 text-lg leading-relaxed">{r.howIntro}</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {t.rtsPhases.map((ph, i) => (
+          <div class="card-dark p-8" data-reveal style={`--rd:${i * 90}ms`}>
+            <span class="font-display text-green-bright text-sm font-semibold tracking-widest">{ph.step}</span>
+            <h3 class="font-display text-white text-xl font-semibold mt-3 mb-3">{ph.title}</h3>
+            <p class="text-white/65 leading-relaxed">{ph.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 bg-paper">
+    <div class="container-px">
+      <div class="max-w-2xl mb-12" data-reveal>
+        <span class="eyebrow mb-5">{r.forWhoEyebrow}</span>
+        <h2 class="display-2 text-balance">{r.forWhoTitle}</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+        {r.audience.map((a, i) => (
+          <div class="card p-7 md:p-8" data-reveal style={`--rd:${i * 90}ms`}>
+            <span class="icon-chip mb-6"><Icon name={a.icon} size={24} strokeWidth={1.75} /></span>
+            <h3 class="font-display text-xl font-semibold text-ink mb-2.5">{a.title}</h3>
+            <p class="text-muted leading-relaxed">{a.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title={r.ctaTitle} text={r.ctaText} />
+</Layout>

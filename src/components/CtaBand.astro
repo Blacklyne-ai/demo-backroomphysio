@@ -1,28 +1,27 @@
 ---
-// Finales CTA-Band (Dark). Doctolib = Primär-CTA. Footer ist info-only (kein Doppel-CTA).
+// Finales CTA-Band (Dark). Doctolib = Primär-CTA. Texte aus i18n, überschreibbar per Prop.
 import Icon from './Icon.astro';
 import { cta } from '../data/site';
+import { getLang } from '../i18n/ui';
+import { useT } from '../i18n/t';
+const lang = getLang(Astro.url);
+const t = useT(lang);
 interface Props { title?: string; text?: string; bg?: boolean }
-const {
-  title = 'Bereit für den nächsten Schritt zurück?',
-  text = 'Ob nach Verletzung, OP oder einfach raus aus dem Stillstand - buchen Sie Ihren Termin direkt online. Wir schauen gemeinsam, wohin die Reise geht.',
-  bg = true,
-} = Astro.props;
+const { title = t.cta.title, text = t.cta.text, bg = true } = Astro.props;
 ---
 <section class="section-dark relative overflow-hidden">
   {bg && (
-    <img src="/images/berlin.webp" alt="" aria-hidden="true" loading="lazy"
-         class="absolute inset-0 w-full h-full object-cover opacity-20" />
+    <img src="/images/berlin.webp" alt="" aria-hidden="true" loading="lazy" class="absolute inset-0 w-full h-full object-cover opacity-20" />
   )}
   <div class="absolute inset-0" style="background: linear-gradient(100deg, rgb(17 20 23 / 0.96) 35%, rgb(17 20 23 / 0.7));" aria-hidden="true"></div>
   <div class="absolute -right-24 -top-24 w-[26rem] h-[26rem] rounded-full opacity-[0.16] pointer-events-none" style="background: radial-gradient(circle, rgb(var(--rgb-green)) 0%, transparent 70%);" aria-hidden="true"></div>
   <div class="container-px relative py-20 md:py-28">
     <div class="max-w-3xl" data-reveal>
-      <span class="eyebrow eyebrow-on-dark mb-6">Termin vereinbaren</span>
+      <span class="eyebrow eyebrow-on-dark mb-6">{t.cta.eyebrow}</span>
       <h2 class="display-2 text-white text-balance mb-5">{title}</h2>
       <p class="text-lg md:text-xl text-white/75 leading-relaxed mb-9 max-w-2xl">{text}</p>
       <div class="flex flex-col sm:flex-row flex-wrap gap-3">
-        <a href={cta.book.href} target="_blank" rel="noopener" class="btn btn-primary btn-lg">{cta.book.label}<Icon name="ArrowUpRight" size={17} strokeWidth={2.2} /></a>
+        <a href={cta.book.href} target="_blank" rel="noopener" class="btn btn-primary btn-lg">{t.common.bookDoctolib}<Icon name="ArrowUpRight" size={17} strokeWidth={2.2} /></a>
         <a href={cta.phone.href} class="btn btn-ghost-dark btn-lg"><Icon name="Phone" size={17} strokeWidth={2.2} />{cta.phone.label}</a>
       </div>
     </div>
