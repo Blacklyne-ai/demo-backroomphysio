@@ -105,3 +105,12 @@ export const international = {
     { code: 'RU', label: 'Русский' },
   ],
 };
+
+// ── Aus den ECHTEN Google-Reviews destilliert (jeder Punkt ist belegt) ──
+// Quelle: src/data/reviews.json. Wird in der Stimmen-Sektion als „immer wieder genannt" gezeigt.
+export const reviewHighlights: { icon: string; label: string }[] = [
+  { icon: 'Activity', label: 'Manuelle Therapie & gezielte Übungen' }, // Malte: "Kombination aus manueller Therapie und passenden Übungen"
+  { icon: 'Target', label: 'Aufmerksame 1:1-Betreuung' },             // Sena: "in jeder Sitzung total aufmerksam, fokussiert"
+  { icon: 'CalendarCheck', label: 'Zuverlässige, pünktliche Termine' }, // Jack: "Termine werden zuverlässig eingehalten"
+  { icon: 'Sparkles', label: 'Saubere, moderne Praxis' },             // Sena/Jack: "super sauber" / "modernes, stilvolles Interieur"
+];

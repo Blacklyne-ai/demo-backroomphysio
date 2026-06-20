@@ -3,6 +3,7 @@ import { nav, site, cta } from '../data/site';
 import Icon from './Icon.astro';
 import LangSwitch from './LangSwitch.astro';
 const { current = '' } = Astro.props;
+const headerNav = nav.filter((i) => !i.footerOnly);
 
 const isActive = (href: string) =>
   current === href || (href.length > 1 && current.startsWith(href));
@@ -26,7 +27,7 @@ const isActive = (href: string) =>
 
       <!-- Desktop nav -->
       <nav class="hidden lg:flex items-center gap-x-1" aria-label="Hauptnavigation">
-        {nav.map((item) => (
+        {headerNav.map((item) => (
           <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}
              class={`nav-link ${isActive(item.href) ? 'active' : ''}`}>{item.label}</a>
         ))}

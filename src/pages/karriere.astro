@@ -1,0 +1,92 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+// Karriere-Seite. Kultur/Argumente sind brand- + review-belegt (modern, international,
+// persönliche Betreuung). KEINE erfundenen Stellen/Benefits/Gehälter → konkrete offene
+// Stellen + Karriere-Kontakt = Operator-TODO. Bewerbung per E-Mail (kein Formular).
+const applyMail = `mailto:${site.email}?subject=${encodeURIComponent('Bewerbung bei Backroom Physio Berlin')}`;
+
+const why = [
+  { icon: 'Dumbbell', title: 'Return to Sport im Fokus', text: 'Reha, die in Belastung und Leistung denkt - nicht nur in Symptomen. Affinität zu Kraft- und Sporttraining ist hier ein Plus, kein Nice-to-have.' },
+  { icon: 'Sparkles', title: 'Moderne Praxis in Mitte', text: 'Ein gut ausgestatteter Trainingsraum mitten in Berlin - der Ort, an dem aktiv gearbeitet wird, nicht nur behandelt.' },
+  { icon: 'Languages', title: 'Internationales Umfeld', text: 'Patient:innen aus aller Welt. Behandlung auf Deutsch, Englisch und Russisch - Sprachen sind hier ein echter Vorteil.' },
+  { icon: 'Target', title: 'Zeit statt Akkord', text: 'Persönliche 1:1-Betreuung statt Fließband - du arbeitest mit Fokus und Zeit. Genau das schätzen auch unsere Patient:innen.' },
+];
+
+const profile = [
+  'Staatlich anerkannte:r Physiotherapeut:in (oder kurz vor dem Abschluss)',
+  'Interesse an Sport-/Kraft-Reha und dem Return-to-Sport-Gedanken',
+  'Eigenständige, aktive Arbeitsweise - du trainierst mit, statt nur zu behandeln',
+  'Deutsch sicher; Englisch oder Russisch sind ein Plus (kein Muss)',
+];
+---
+<Layout title="Karriere - Werde Teil von Backroom Physio Berlin" current="/karriere">
+  <PageHero
+    crumb="Karriere"
+    eyebrow="Karriere"
+    title="Arbeite da, wo Reha <span class='text-green-ink'>Sport</span> ist."
+    subtitle="Backroom Physio in Berlin-Mitte sucht Verstärkung, die Physiotherapie und Training zusammen denkt. Wenn Return to Sport für dich mehr als ein Schlagwort ist, sollten wir reden."
+    primary={{ href: applyMail, label: 'Initiativ bewerben' }}
+    secondary={{ href: '/ueber-uns', label: 'Über die Praxis' }}
+  />
+
+  <!-- Warum Backroom -->
+  <section class="py-20 md:py-28 bg-paper">
+    <div class="container-px">
+      <div class="max-w-2xl mb-12" data-reveal>
+        <span class="eyebrow mb-5">Warum Backroom</span>
+        <h2 class="display-2 text-balance">Ein Ort, an dem Physiotherapie Spass macht.</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+        {why.map((w, i) => (
+          <div class="card p-7 md:p-8 flex items-start gap-5" data-reveal style={`--rd:${i * 80}ms`}>
+            <span class="icon-chip flex-none"><Icon name={w.icon} size={24} strokeWidth={1.75} /></span>
+            <div>
+              <h3 class="font-display text-xl font-semibold text-ink mb-2">{w.title}</h3>
+              <p class="text-muted leading-relaxed">{w.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Wen wir suchen + Offene Stellen (Dark) -->
+  <section class="section-dark glow-green relative overflow-hidden py-20 md:py-28">
+    <div class="container-px relative">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
+        <div data-reveal>
+          <span class="eyebrow eyebrow-on-dark mb-5">Wen wir suchen</span>
+          <h2 class="display-2 text-white text-balance mb-7">Physiotherapeut:in mit Sport im Blut.</h2>
+          <ul class="space-y-4">
+            {profile.map((item) => (
+              <li class="flex items-start gap-3 text-white/80 leading-relaxed">
+                <span class="icon-chip-dark flex-none w-8 h-8 rounded-lg"><Icon name="Check" size={16} strokeWidth={2.4} /></span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div data-reveal style="--rd:120ms">
+          <div class="card-dark h-full p-8 md:p-10 flex flex-col">
+            <span class="eyebrow eyebrow-on-dark mb-5">Offene Stellen</span>
+            <h3 class="display-3 text-white font-display mb-4" style="font-weight:600;">Lass uns reden.</h3>
+            <p class="text-white/70 leading-relaxed mb-2">
+              Aktuelle Positionen stimmen wir individuell ab - feste Stelle, Teilzeit oder
+              freie Mitarbeit. Initiativbewerbungen sind jederzeit willkommen.
+            </p>
+            <p class="text-white/70 leading-relaxed mb-8">
+              Schreib uns kurz, was du suchst und was dich am Return-to-Sport-Ansatz reizt.
+            </p>
+            <div class="mt-auto flex flex-col sm:flex-row gap-3">
+              <a href={applyMail} class="btn btn-primary"><Icon name="Mail" size={16} strokeWidth={2.1} />Jetzt bewerben</a>
+              <a href={`tel:${site.phoneIntl}`} class="btn btn-ghost-dark">{site.phoneDisplay}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

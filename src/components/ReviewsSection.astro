@@ -6,6 +6,7 @@ import { site } from '../data/site';
 import Icon from './Icon.astro';
 import ReviewBadge from './ReviewBadge.astro';
 import reviews from '../data/reviews.json';
+import { reviewHighlights } from '../data/content';
 
 const rating = reviews.rating > 0 ? reviews.rating : site.google.rating;
 const count = reviews.total > 0 ? reviews.total : site.google.reviewsCount;
@@ -73,6 +74,19 @@ if (rating <= 0) return null; // ohne echtes Rating: Sektion gar nicht zeigen
             <ReviewBadge variant="light" class="mt-1" />
           </div>
         )}
+      </div>
+    </div>
+
+    <!-- Aus den Reviews destillierte, belegte Themen -->
+    <div class="mt-12 pt-10 border-t border-line" data-reveal>
+      <p class="text-muted-light text-xs uppercase tracking-widest font-display mb-5">Immer wieder in den Bewertungen genannt</p>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        {reviewHighlights.map((h) => (
+          <div class="flex items-center gap-3">
+            <span class="icon-chip flex-none w-10 h-10"><Icon name={h.icon} size={20} strokeWidth={1.9} /></span>
+            <span class="text-ink font-medium text-[0.95rem] leading-snug">{h.label}</span>
+          </div>
+        ))}
       </div>
     </div>
   </div>
