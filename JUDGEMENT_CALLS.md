@@ -121,6 +121,9 @@ Web-/Registerrecherche zu Inhaber, Größe, Alter. **Belegt** (mehrere Quellen) 
 - Privatpraxis oder gesetzliche Kassen? (für Mitte-Physio relevant, beeinflusst Copy).
 
 ### 4.9 REVIEWS  (umgesetzt — echt)
+- **Google Place ID:** `ChIJL3qj5XdRqEcRpqQCyyQXeqg` (aus Maps-ftid
+  `0x47a85177e5a37a2f:0xa87a1724cb02a4a6` abgeleitet + gegengeprüft → „Backroom Physio Berlin").
+  Steht in `site.google.placeId` + als Default in `scripts/fetch-reviews.mjs`.
 - **Live:** Aggregat 4,9★ / 28 (verifizierter Snapshot, `site.google`) als Rating-Badge
   (Hero + Kontakt) + Sektion „Bewertet auf Google" mit Link auf die echten Reviews
   (CID 12140041192322802854). **Keine erfundenen Reviews.**

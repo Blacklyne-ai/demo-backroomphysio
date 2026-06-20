@@ -17,9 +17,12 @@ if (!KEY) {
 }
 
 const QUERY = 'Backroom Physio Berlin, Linienstraße 139-140, 10115 Berlin';
+const DEFAULT_PLACE_ID = 'ChIJL3qj5XdRqEcRpqQCyyQXeqg'; // verifiziert (site.google.placeId)
 
 async function resolvePlaceId() {
   if (process.env.PLACE_ID) return process.env.PLACE_ID;
+  if (DEFAULT_PLACE_ID) return DEFAULT_PLACE_ID; // spart den FindPlace-Call
+  // Fallback (falls Place-ID mal geleert wird): per Name+Adresse auflösen
   const u = new URL('https://maps.googleapis.com/maps/api/place/findplacefromtext/json');
   u.searchParams.set('input', QUERY);
   u.searchParams.set('inputtype', 'textquery');

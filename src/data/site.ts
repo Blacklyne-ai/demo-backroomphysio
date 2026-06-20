@@ -54,7 +54,7 @@ export const site = {
   // Live-Einzelreviews + tagesaktuelles Rating: scripts/fetch-reviews.mjs (Google Places API,
   // ENV GOOGLE_PLACES_API_KEY) -> src/data/reviews.json. ReviewBadge zeigt Sterne nur bei rating>0.
   google: {
-    placeId: '',                       // optional ChIJ…; sonst löst das Script per Name+Adresse auf
+    placeId: 'ChIJL3qj5XdRqEcRpqQCyyQXeqg',  // verifiziert (aus Maps-ftid abgeleitet + gegengeprüft)
     cid: '12140041192322802854',
     rating: 4.9,
     reviewsCount: 28,
