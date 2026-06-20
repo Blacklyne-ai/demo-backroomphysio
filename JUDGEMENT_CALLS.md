@@ -110,8 +110,13 @@ Web-/Registerrecherche zu Inhaber, Größe, Alter. **Belegt** (mehrere Quellen) 
 - **Offen:** vollständiges Team (Namen/Rollen/Qualifikationen von Sergey Bogdanov, Toni Ritter,
   ggf. weiteren), echte Portraitfotos, Alter/Erfahrung - vom Betreiber bestätigen lassen.
 
-### 4.6 SPRACHE
-- Primärsprache bestätigen. EN/RU sofort oder Phase 2? Schalter ist vorbereitet.
+### 4.6 SPRACHE  (umgesetzt — voll dreisprachig)
+- **DE / EN / RU live** auf allen Hauptseiten (Start, Leistungen, Return to Sport, Über uns,
+  Kontakt, Karriere). DE = Root, EN = `/en/`, RU = `/ru/`; aktiver Schalter, hreflang.
+- Recht (Impressum/Datenschutz) bewusst **nur DE**; Review-Texte bleiben in Originalsprache.
+- **Offen:** RU-Übersetzung von Muttersprachler:in gegenlesen lassen (von mir erstellt).
+  RU-Headlines nutzen System-Sans-Fallback (Space Grotesk hat kein Kyrillisch) - sauber,
+  aber falls gewünscht: kyrillische Display-Schrift ergänzen.
 
 ### 4.7 FOTOS
 - Echte Praxis-/Team-/Sportfotos liefern → ersetzen die Pexels-Platzhalter:
