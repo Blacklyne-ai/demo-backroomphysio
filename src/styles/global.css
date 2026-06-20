@@ -77,6 +77,9 @@
   --radius-xl: 28px;
   --radius-pill: 999px;
 
+  /* Emil-Kowalski-Settle — ruhige, „teure" Ease-Out (easeOutExpo-artig) für Hover/Press */
+  --ease-emil: cubic-bezier(0.22, 1, 0.36, 1);
+
   /* neutral-kühle, knackige Schatten (urban, nicht weich-warm) */
   --shadow-soft: 0 1px 2px rgb(17 20 23 / 0.05), 0 12px 30px -14px rgb(17 20 23 / 0.16);
   --shadow-lift: 0 2px 6px -2px rgb(17 20 23 / 0.08), 0 28px 56px -24px rgb(17 20 23 / 0.26);
@@ -190,7 +193,7 @@
     letter-spacing: -0.005em; line-height: 1;
     padding: 0.82rem 1.4rem; border-radius: var(--radius-pill);
     border: 1px solid transparent; cursor: pointer;
-    transition: transform .25s cubic-bezier(.2,.7,.3,1), background-color .25s, border-color .25s, box-shadow .25s, color .25s;
+    transition: transform .25s var(--ease-emil), background-color .25s, border-color .25s, box-shadow .25s, color .25s;
     will-change: transform;
   }
   .btn:active { transform: translateY(1px); }
@@ -223,7 +226,7 @@
   .card {
     background: rgb(var(--rgb-white)); border: 1px solid rgb(var(--rgb-line));
     border-radius: var(--radius-lg); box-shadow: var(--shadow-soft);
-    transition: transform .35s cubic-bezier(.2,.7,.3,1), box-shadow .35s, border-color .35s;
+    transition: transform .35s var(--ease-emil), box-shadow .35s, border-color .35s;
   }
   .card-hover:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); border-color: rgb(var(--rgb-green-deep) / 0.4); }
   .card-dark {
@@ -319,18 +322,13 @@
   70% { box-shadow: 0 0 0 9px rgb(31 199 119 / 0); }
   100% { box-shadow: 0 0 0 0 rgb(31 199 119 / 0); }
 }
-@keyframes reveal-up {
-  from { opacity: 0; transform: translateY(18px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ════════════════════════ REVEAL ON SCROLL ════════════════════════ */
-[data-reveal] { opacity: 0; }
-.js [data-reveal].is-in { animation: reveal-up 0.7s cubic-bezier(.2,.7,.3,1) both; animation-delay: var(--rd, 0ms); }
-/* Fallback: ohne JS nie unsichtbar bleiben */
-html:not(.js) [data-reveal] { opacity: 1; }
+/* ════════════════════ REVEAL ON SCROLL — Motion: Feder + Blur-In (Emil-Kowalski-Stil) ════════════════════ */
+/* Hidden-State NUR mit JS — Motion (inView) animiert zu sichtbar. Ohne .js bleibt alles sichtbar (kein opacity:0). */
+.js [data-reveal] { opacity: 0; transform: translateY(12px); filter: blur(6px); }
+/* Hero/LCP-Variante: Text ab Frame 1 sichtbar — kein Opacity/Blur-Fade, nur die Position federt herein. */
+.js [data-reveal="hero"] { opacity: 1; filter: none; }
 @media (prefers-reduced-motion: reduce) {
-  [data-reveal] { opacity: 1 !important; animation: none !important; transform: none !important; }
+  [data-reveal] { opacity: 1 !important; transform: none !important; filter: none !important; }
 }
 
 /* Utilities */

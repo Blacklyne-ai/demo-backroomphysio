@@ -1,8 +1,27 @@
 {
-  "_hinweis": "Wird von scripts/fetch-reviews.mjs (Google Places API) befuellt. Leer = nur Aggregat-Badge aus site.google, KEINE erfundenen Reviews.",
-  "fetchedAt": null,
-  "rating": 0,
-  "total": 0,
-  "url": "",
-  "reviews": []
+  "_hinweis": "ECHTE Google-Reviews (Place ChIJL3qj5XdRqEcRpqQCyyQXeqg), Stand 2026-06-20. Verbatim. Aktualisierbar via scripts/fetch-reviews.mjs (API) oder scripts/gmaps-reviews.mjs (key-frei).",
+  "fetchedAt": "2026-06-20",
+  "rating": 4.9,
+  "total": 28,
+  "url": "https://www.google.com/maps?cid=12140041192322802854",
+  "reviews": [
+    {
+      "author": "Sena Coşkun",
+      "rating": 5,
+      "time": "vor 2 Wochen",
+      "text": "Ich bin super zufrieden mit Backroom Physiotherapie! Mein Therapeut Toni Ritter ist einfach klasse, er ist in jeder Sitzung total aufmerksam, fokussiert und engagiert. Die Praxis ist außerdem super sauber und ordentlich. Vielen Dank für den tollen Service!"
+    },
+    {
+      "author": "Malte Soenksen",
+      "rating": 5,
+      "time": "vor 4 Monaten",
+      "text": "Ich bin sehr dankbar für die Behandlung bei Toni. Mein Arm hat mir lange Probleme gemacht, und durch seine Kombination aus manueller Therapie und passenden Übungen wurde es deutlich besser. Besonders schätze ich seine positive Art: immer freundlich, immer mit einem Lächeln und guter Laune. Man geht nicht nur körperlich, sondern auch mental gestärkt aus der Praxis. Absolute Empfehlung."
+    },
+    {
+      "author": "Jack Mini",
+      "rating": 5,
+      "time": "vor 5 Monaten",
+      "text": "Eine hervorragende Backroom Physio! Das Personal ist äußerst kompetent, professionell und immer freundlich. Man fühlt sich vom ersten Moment an sehr gut aufgehoben. Der Service ist auf höchstem Niveau, Termine werden zuverlässig eingehalten und alles ist bestens organisiert. Besonders beeindruckt hat mich auch das moderne, stilvolle und sehr angenehme Interieur - man kommt wirklich gerne hierher. Absolut empfehlenswert!"
+    }
+  ]
 }

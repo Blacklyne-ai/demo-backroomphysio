@@ -102,10 +102,13 @@ Web-/Registerrecherche zu Inhaber, Größe, Alter. **Belegt** (mehrere Quellen) 
   Live-Status nachliefern.
 
 ### 4.5 TEAM  (teilweise gelöst durch Recherche 4.0)
-- Praxis ist eine **Einzelpraxis** (Inhaber Sergey Bogdanov). Auf `/ueber-uns` ist der
-  Gründer jetzt belegt benannt (Physio + Gewichtheber-Coach BVDG, echte Schwerpunkte).
-- **Offen:** echtes Portraitfoto (aktuell Emblem als Platzhalter in der ID-Karte),
-  Erfahrung/Ausbildungsjahre, Alter - vom Betreiber bestätigen lassen.
+- **Inhaber/Gründer: Sergey Bogdanov** (Register). Auf `/ueber-uns` belegt benannt.
+- **Korrektur:** Es ist KEINE reine Einzelpraxis. Die Google-Reviews nennen mehrfach
+  **Toni Ritter** als behandelnden Physiotherapeuten → mindestens 2 Personen (Register
+  zählt nur den Inhaber). Die frühere „Sie werden vom Gründer selbst betreut"-Aussage wurde
+  deshalb auf `/ueber-uns` entfernt/korrigiert.
+- **Offen:** vollständiges Team (Namen/Rollen/Qualifikationen von Sergey Bogdanov, Toni Ritter,
+  ggf. weiteren), echte Portraitfotos, Alter/Erfahrung - vom Betreiber bestätigen lassen.
 
 ### 4.6 SPRACHE
 - Primärsprache bestätigen. EN/RU sofort oder Phase 2? Schalter ist vorbereitet.
@@ -127,9 +130,10 @@ Web-/Registerrecherche zu Inhaber, Größe, Alter. **Belegt** (mehrere Quellen) 
 - **Live:** Aggregat 4,9★ / 28 (verifizierter Snapshot, `site.google`) als Rating-Badge
   (Hero + Kontakt) + Sektion „Bewertet auf Google" mit Link auf die echten Reviews
   (CID 12140041192322802854). **Keine erfundenen Reviews.**
-- **Einzel-Reviews live schalten:** `GOOGLE_PLACES_API_KEY` setzen →
-  `node scripts/fetch-reviews.mjs` → `src/data/reviews.json` (siehe README). Dann erscheinen
-  echte Review-Karten + tagesaktuelles Rating automatisch.
+- **Einzel-Reviews: LIVE & ECHT.** 3 verbatim 5★-Reviews (Sena Coşkun, Malte Soenksen,
+  Jack Mini) in `src/data/reviews.json`, key-frei aus dem Google-Eintrag gezogen
+  (`scripts/gmaps-reviews.mjs`, Playwright + Consent). Aktualisieren: dieses Script erneut
+  laufen lassen, oder mit API-Key `scripts/fetch-reviews.mjs`.
 - SchemaOrg `aggregateRating` bewusst **weggelassen** (Google-Richtlinie: kein Self-Markup
   von Drittanbieter-/eigenen Ratings → Penalty-Risiko). Badge + Link genügen.
 - Rating/Count beim Betreiber bzw. per API gegenchecken (Snapshot kann driften).

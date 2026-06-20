@@ -78,16 +78,38 @@ const ogImageUrl = new URL(ogImage, site.url).toString();
     <CookieBanner />
 
     <script>
-      // Dezentes Scroll-Reveal — [data-reveal] → .is-in. Stagger via inline --rd.
-      function initReveal() {
-        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const els = document.querySelectorAll('[data-reveal]');
-        if (reduce) { els.forEach((e) => e.classList.add('is-in')); return; }
-        const io = new IntersectionObserver((entries) => {
-          entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
-        }, { rootMargin: '0px 0px -50px 0px', threshold: 0.08 });
-        els.forEach((el) => io.observe(el));
+      // Scroll-Reveal — Emil-Kowalski-Stil: ruhige Feder + Blur-In, Stagger via inline --rd.
+      // Motion (motion.dev, vanilla) — wird von Astro/Vite ins statische Bundle gebaut.
+      import { inView, animate } from 'motion';
+
+      function revealOne(el) {
+        if (el.dataset.revealDone) return;   // idempotent (Sofort-Lauf + astro:page-load)
+        el.dataset.revealDone = '1';
+        const rd = parseFloat(getComputedStyle(el).getPropertyValue('--rd')) || 0; // "90ms" -> 90
+        const delay = rd / 1000;
+        const isHero = el.getAttribute('data-reveal') === 'hero'; // LCP-safe: nur Transform, kein Fade
+        inView(el, () => {
+          animate(
+            el,
+            isHero
+              ? { y: [12, 0] }
+              : { opacity: [0, 1], y: [12, 0], filter: ['blur(6px)', 'blur(0px)'] },
+            { type: 'spring', stiffness: 190, damping: 25, delay }
+          );
+        }, { amount: 0.15, margin: '0px 0px -40px 0px' });
       }
+
+      function initReveal() {
+        const els = document.querySelectorAll('[data-reveal]');
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          els.forEach((e) => { e.style.opacity = '1'; e.style.transform = 'none'; e.style.filter = 'none'; });
+          return;
+        }
+        els.forEach(revealOne);
+      }
+
+      // Sofort starten (Motion-Modul lädt evtl. NACH dem ersten astro:page-load) + bei jeder SPA-Navigation.
+      initReveal();
       document.addEventListener('astro:page-load', initReveal);
     </script>
 
