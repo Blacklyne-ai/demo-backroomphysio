@@ -13,7 +13,7 @@ const t = useT(lang);
   <div class="container-wide pt-3 md:pt-4">
     <div
       id="nav-pill"
-      class="flex items-center justify-between gap-4 rounded-pill pl-3 pr-2 md:pl-4 md:pr-3 h-14 md:h-[4.2rem] transition-all duration-300"
+      class="flex items-center justify-between gap-4 rounded-[16px] pl-3 pr-2 md:pl-4 md:pr-3 h-14 md:h-[4.2rem] transition-all duration-300"
       style="background: rgba(246,247,248,0.78); backdrop-filter: blur(16px) saturate(150%); -webkit-backdrop-filter: blur(16px) saturate(150%); border: 1px solid rgba(224,227,232,0.9); box-shadow: 0 1px 2px rgba(17,20,23,0.04), 0 10px 30px -16px rgba(17,20,23,0.18);"
     >
       <a href={localizedPath('', lang)} class="flex items-center gap-2.5 flex-shrink-0" aria-label="Backroom Physio Berlin - Start">
@@ -33,10 +33,6 @@ const t = useT(lang);
 
       <div class="flex items-center gap-2 md:gap-2.5">
         <div class="hidden lg:block"><LangSwitch variant="light" /></div>
-        <a href={cta.phone.href} class="hidden xl:inline-flex items-center gap-2 text-ink/75 hover:text-green-ink transition text-sm font-medium" aria-label={`${t.common.call} ${cta.phone.label}`}>
-          <Icon name="Phone" size={15} strokeWidth={2} class="text-green-deep" />
-          <span>{cta.phone.label}</span>
-        </a>
         <div class="hidden sm:block">
           <a href={cta.book.href} target="_blank" rel="noopener" class="btn btn-primary btn-sm">
             {t.common.book}<span class="hidden md:inline">&nbsp;· Doctolib</span><Icon name="ArrowUpRight" size={15} strokeWidth={2.2} />
