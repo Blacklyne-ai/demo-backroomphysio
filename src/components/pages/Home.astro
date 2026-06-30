@@ -14,10 +14,10 @@ const lang = getLang(Astro.url);
 const t = useT(lang);
 const h = t.home;
 const gallery = [
-  { src: '/images/raum2', alt: 'Trainingsraum mit Hexagon-Licht' },
   { src: '/images/raum3', alt: 'Kraftgeräte im Trainingsraum' },
   { src: '/images/raum4', alt: 'Trainingsraum mit Fensterfront' },
   { src: '/images/aussen', alt: 'Eingang Backroom Physio, Linienstraße' },
+  { src: '/images/raum', alt: 'Trainingsbereich' },
 ];
 const initials = (n: string) => n.split(' ').map((w) => w[0]).join('').slice(0, 2);
 const metaTitle = lang === 'de'
@@ -25,33 +25,40 @@ const metaTitle = lang === 'de'
   : 'Backroom Physio Berlin - Physiotherapy & Return to Sport in Berlin-Mitte';
 ---
 <Layout title={metaTitle} description={h.heroSub} ogImage="/images/og.jpg"
-  heroPreload={{ srcset: '/images/hero-sm.webp 1000w, /images/hero.webp 2000w', sizes: '100vw' }}>
-  <!-- HERO -->
-  <section class="relative min-h-[88svh] flex items-end section-dark overflow-hidden">
-    <img src="/images/hero.webp" srcset="/images/hero-sm.webp 1000w, /images/hero.webp 2000w" sizes="100vw"
-      alt="Läufer in Bewegung im Dunkeln - Return to Sport" width="2000" height="1334"
-      fetchpriority="high" decoding="async" class="absolute inset-0 w-full h-full object-cover" style="object-position: 62% center;" />
-    <div class="absolute inset-0" style="background: linear-gradient(105deg, rgb(8 10 12 / 0.92) 28%, rgb(8 10 12 / 0.55) 65%, rgb(8 10 12 / 0.35));" aria-hidden="true"></div>
-    <div class="absolute inset-x-0 bottom-0 h-40" style="background: linear-gradient(to top, rgb(8 10 12 / 0.9), transparent);" aria-hidden="true"></div>
-    <div class="container-px relative w-full pt-32 pb-16 md:pb-24">
-      <div class="max-w-3xl">
-        <span class="eyebrow eyebrow-on-dark mb-6">{h.heroEyebrow}</span>
-        <h1 class="display-1 text-white text-balance" style="text-shadow: 0 2px 30px rgb(0 0 0 / 0.4);" set:html={h.heroH1} />
-        <p class="mt-6 text-lg md:text-xl text-white/80 leading-relaxed max-w-xl" style="text-shadow: 0 1px 12px rgb(0 0 0 / 0.5);">{h.heroSub}</p>
-        <div class="mt-9 flex flex-col sm:flex-row gap-3">
-          <a href={cta.book.href} target="_blank" rel="noopener" class="btn btn-primary btn-lg">{t.common.bookDoctolib}<Icon name="ArrowUpRight" size={18} strokeWidth={2.2} /></a>
-          <a href={cta.phone.href} class="btn btn-ghost-dark btn-lg"><Icon name="Phone" size={17} strokeWidth={2.2} />{cta.phone.label}</a>
+  heroPreload={{ srcset: '/images/raum2-sm.webp 640w, /images/raum2.webp 974w', sizes: '(min-width:1024px) 45vw, 90vw' }}>
+  <!-- HERO (hell, Glas, echtes Foto) -->
+  <section class="relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-24">
+    <div class="container-px relative">
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div>
+          <span class="eyebrow mb-6">{h.heroEyebrow}</span>
+          <h1 class="display-1 text-balance" set:html={h.heroH1} />
+          <p class="lede mt-6 max-w-lg">{h.heroSub}</p>
+          <div class="mt-8 flex flex-col sm:flex-row gap-3">
+            <a href={cta.book.href} target="_blank" rel="noopener" class="btn btn-primary btn-lg">{t.common.bookDoctolib}<Icon name="ArrowUpRight" size={18} strokeWidth={2.2} /></a>
+            <a href={cta.phone.href} class="btn btn-ghost btn-lg"><Icon name="Phone" size={17} strokeWidth={2.2} />{cta.phone.label}</a>
+          </div>
+          <div class="mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 text-muted-light text-sm">
+            {t.pillars.map((p, i) => (<>{i > 0 && <span class="text-green-deep/60" aria-hidden="true">/</span>}<span class="font-display font-bold tracking-wide text-ink-soft">{p.term}</span></>))}
+          </div>
+          <div class="mt-7"><ReviewBadge variant="light" /></div>
         </div>
-        <div class="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 text-white/55 text-sm">
-          {t.pillars.map((p, i) => (<>{i > 0 && <span class="text-green/70" aria-hidden="true">/</span>}<span class="font-display tracking-wide">{p.term}</span></>))}
+        <div class="relative">
+          <div class="glass-panel p-3 md:p-4" style="box-shadow: var(--shadow-photo);">
+            <div class="relative overflow-hidden rounded-[20px] aspect-[4/5] bg-mist">
+              <img src="/images/raum2.webp" srcset="/images/raum2-sm.webp 640w, /images/raum2.webp 974w" sizes="(min-width:1024px) 45vw, 90vw"
+                alt="Trainingsraum von Backroom Physio in Berlin-Mitte" width="974" height="1534" fetchpriority="high" decoding="async" class="w-full h-full object-cover" />
+              <span class="absolute bottom-4 left-4 tag"><span class="dot"></span>{h.room}</span>
+            </div>
+          </div>
+          <div class="hidden md:block absolute -z-10 -top-6 -right-6 w-40 h-40 rounded-full" style="background: radial-gradient(circle, rgb(31 199 119 / 0.25), transparent 70%);" aria-hidden="true"></div>
         </div>
-        <div class="mt-7"><ReviewBadge variant="glass" /></div>
       </div>
     </div>
   </section>
 
   <!-- LEISTUNGEN -->
-  <section id="leistungen" class="py-20 md:py-28 bg-paper scroll-mt-24">
+  <section id="leistungen" class="py-16 md:py-24 scroll-mt-24">
     <div class="container-px">
       <SectionHeading eyebrow={h.servicesEyebrow} title={h.servicesTitle} intro={h.servicesIntro} />
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 mt-12">
@@ -67,36 +74,35 @@ const metaTitle = lang === 'de'
     </div>
   </section>
 
-  <!-- RETURN TO SPORT -->
-  <section class="section-dark glow-green relative overflow-hidden py-20 md:py-28">
-    <div class="container-px relative">
-      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-        <div data-reveal>
-          <span class="eyebrow eyebrow-on-dark mb-6">{h.rtsEyebrow}</span>
-          <h2 class="display-2 text-white text-balance mb-6">{h.rtsTitle}</h2>
-          <p class="text-white/72 text-lg leading-relaxed mb-4">{h.rtsP1}</p>
-          <p class="text-white/72 text-lg leading-relaxed">{h.rtsP2}</p>
-        </div>
-        <div data-reveal style="--rd:120ms">
-          <div class="relative overflow-hidden rounded-[22px] border border-white/10 aspect-[4/5] lg:min-h-[460px]" style="box-shadow: var(--shadow-photo); background: rgb(var(--rgb-dark-soft));">
-            <img src="/images/return-to-sport.webp" alt="Athlet mit Sportprothese beim Lauftraining" width="720" height="900" loading="lazy" class="w-full h-full object-cover" />
+  <!-- RETURN TO SPORT (hell) -->
+  <section class="py-16 md:py-24">
+    <div class="container-px">
+      <div class="rounded-[28px] overflow-hidden border border-line glass-tint">
+        <div class="grid lg:grid-cols-2 gap-0 items-stretch">
+          <div class="p-8 md:p-12 lg:p-14 flex flex-col justify-center" data-reveal>
+            <span class="eyebrow mb-6">{h.rtsEyebrow}</span>
+            <h2 class="display-2 text-balance mb-6">{h.rtsTitle}</h2>
+            <p class="text-muted text-lg leading-relaxed mb-4">{h.rtsP1}</p>
+            <p class="text-muted text-lg leading-relaxed mb-8">{h.rtsP2}</p>
+            <div class="grid sm:grid-cols-3 gap-3">
+              {t.rtsPhases.map((ph) => (
+                <div class="rounded-2xl p-4 bg-white/55 border border-white/70">
+                  <span class="font-display text-green-ink text-xs font-bold tracking-widest">{ph.step}</span>
+                  <h3 class="font-display text-ink text-[0.98rem] font-bold mt-1.5">{ph.title}</h3>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div class="relative min-h-[340px] lg:min-h-full" data-reveal style="--rd:120ms">
+            <img src="/images/return-to-sport.webp" alt="Athlet mit Sportprothese beim Lauftraining" width="720" height="900" loading="lazy" class="absolute inset-0 w-full h-full object-cover" />
           </div>
         </div>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-14">
-        {t.rtsPhases.map((ph, i) => (
-          <div class="card-dark p-7" data-reveal style={`--rd:${i * 90}ms`}>
-            <span class="font-display text-green-bright text-sm font-bold tracking-widest">{ph.step}</span>
-            <h3 class="font-display text-white text-xl font-bold mt-3 mb-2.5">{ph.title}</h3>
-            <p class="text-white/65 text-[0.95rem] leading-relaxed">{ph.text}</p>
-          </div>
-        ))}
       </div>
     </div>
   </section>
 
   <!-- TEAM -->
-  <section id="team" class="py-20 md:py-28 bg-paper scroll-mt-24">
+  <section id="team" class="py-16 md:py-24 scroll-mt-24">
     <div class="container-px">
       <SectionHeading eyebrow={t.team.eyebrow} title={t.team.title} intro={t.team.intro} />
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 mt-12">
@@ -105,7 +111,7 @@ const metaTitle = lang === 'de'
             <div class="flex-none">
               <span class="relative inline-flex items-center justify-center w-20 h-20 rounded-full font-display font-extrabold text-2xl text-white" style="background: rgb(var(--rgb-dark));">
                 {initials(m.name)}
-                <span class="absolute -bottom-1 -right-1 w-7 h-7 rounded-full border-2 border-paper inline-flex items-center justify-center" style="background: rgb(var(--rgb-green-deep));"><Icon name="Check" size={13} strokeWidth={3} class="text-white" /></span>
+                <span class="absolute -bottom-1 -right-1 w-7 h-7 rounded-full border-2 border-white inline-flex items-center justify-center" style="background: rgb(var(--rgb-green-deep));"><Icon name="Check" size={13} strokeWidth={3} class="text-white" /></span>
               </span>
               <span class="block mt-2 text-[0.68rem] text-muted-light text-center uppercase tracking-wider">{t.team.photoNote}</span>
             </div>
@@ -125,38 +131,25 @@ const metaTitle = lang === 'de'
     </div>
   </section>
 
-  <!-- PRAXIS -->
-  <section id="praxis" class="py-20 md:py-28 scroll-mt-24" style="background: rgb(var(--rgb-surface));">
+  <!-- PRAXIS + GALERIE -->
+  <section id="praxis" class="py-16 md:py-24 scroll-mt-24">
     <div class="container-px">
-      <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-12">
-        <div data-reveal>
-          <span class="eyebrow mb-5">{h.praxisEyebrow}</span>
-          <h2 class="display-2 text-balance mb-6">{h.praxisTitle}</h2>
-          <p class="lede mb-4">{h.praxisLede}</p>
-          <p class="text-muted leading-relaxed">{h.praxisP}</p>
-        </div>
-        <div data-reveal style="--rd:120ms">
-          <div class="relative overflow-hidden rounded-[22px] border border-line aspect-[5/4] lg:min-h-[380px]" style="box-shadow: var(--shadow-photo); background: rgb(var(--rgb-mist));">
-            <img src="/images/raum2.webp" srcset="/images/raum2-sm.webp 640w, /images/raum2.webp 974w" sizes="(min-width:1024px) 45vw, 90vw" alt="Trainingsraum von Backroom Physio in Berlin-Mitte" width="974" height="1534" loading="lazy" class="w-full h-full object-cover" />
-            <span class="absolute bottom-4 left-4 tag tag-dark"><span class="dot"></span>{h.room}</span>
-          </div>
-        </div>
-      </div>
-      <p class="eyebrow mb-5">{t.praxisGallery}</p>
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4" data-reveal>
+      <SectionHeading eyebrow={h.praxisEyebrow} title={h.praxisTitle} intro={h.praxisLede} />
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mt-12">
         {gallery.map((g) => (
-          <div class="relative overflow-hidden rounded-2xl border border-line aspect-square" style="background: rgb(var(--rgb-mist));">
-            <img src={`${g.src}.webp`} srcset={`${g.src}-sm.webp 640w, ${g.src}.webp 1080w`} sizes="(min-width:1024px) 22vw, 45vw" alt={g.alt} width="1080" height="1080" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
+          <div class="relative overflow-hidden rounded-[20px] border border-white/60 group aspect-[4/5]" style="box-shadow: var(--shadow-soft); background: rgb(var(--rgb-mist));">
+            <img src={`${g.src}.webp`} srcset={`${g.src}-sm.webp 640w, ${g.src}.webp 1080w`} sizes="(min-width:1024px) 24vw, 50vw" alt={g.alt} width="1080" height="1350" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
           </div>
         ))}
       </div>
+      <p class="text-muted leading-relaxed mt-8 max-w-2xl">{h.praxisP}</p>
     </div>
   </section>
 
   <ReviewsSection />
 
   <!-- KONTAKT -->
-  <section id="kontakt" class="py-20 md:py-28 bg-paper scroll-mt-24">
+  <section id="kontakt" class="py-16 md:py-24 scroll-mt-24">
     <div class="container-px">
       <SectionHeading eyebrow={h.kontaktEyebrow} title={h.kontaktTitle} intro={h.kontaktIntro} />
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-12">
@@ -180,8 +173,8 @@ const metaTitle = lang === 'de'
     </div>
   </section>
 
-  <!-- ANFAHRT / GOOGLE MAPS (unten) -->
-  <section class="pb-20 md:pb-28 bg-paper">
+  <!-- ANFAHRT / GOOGLE MAPS -->
+  <section class="pb-16 md:pb-24">
     <div class="container-px">
       <div class="flex items-end justify-between gap-6 mb-6 flex-wrap">
         <div>
