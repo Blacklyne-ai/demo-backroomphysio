@@ -118,8 +118,8 @@ const de = {
     photoNote: 'Foto folgt',
     members: [
       { name: 'Sergey Bogdanov', role: 'Gründer · Physiotherapeut & Gewichtheber-Coach', note: 'Physiotherapeut und zugleich Trainer im Gewichtheben bzw. in der Langhantelathletik (BVDG). Return to Sport in Person.', photo: '/images/team/sergey.webp' },
-      { name: 'Pierre', role: 'Physiotherapeut', note: '', photo: '/images/team/pierre.webp' },
-      { name: 'Toni Ritter', role: 'Physiotherapeut', note: 'In den Google-Bewertungen immer wieder für seine aufmerksame, engagierte Art genannt.', photo: '/images/team/toni.webp' },
+      { name: 'Pierre', role: 'Physiotherapeut', note: 'Ruhige Hände, klarer Plan - begleitet Sie geduldig und gründlich zurück in Bewegung.', photo: '/images/team/pierre.webp' },
+      { name: 'Toni Ritter', role: 'Physiotherapeut', note: 'Packt mit an und motiviert - damit Sie schmerzfrei und stark in Ihren Sport zurückfinden.', photo: '/images/team/toni.webp' },
       { name: 'Alex', role: 'Physiotherapeut', note: '', photo: '' },
       { name: 'Kuba', role: 'Praxishund', note: 'Der gute Geist der Praxis - sorgt für die Wohlfühl-Atmosphäre.', icon: 'Dog', photo: '' },
     ],
@@ -269,8 +269,8 @@ const en: typeof de = {
     photoNote: 'Photo soon',
     members: [
       { name: 'Sergey Bogdanov', role: 'Founder · Physiotherapist & weightlifting coach', note: 'Physiotherapist and also a coach in weightlifting / barbell athletics (BVDG). Return to Sport in person.', photo: '/images/team/sergey.webp' },
-      { name: 'Pierre', role: 'Physiotherapist', note: '', photo: '/images/team/pierre.webp' },
-      { name: 'Toni Ritter', role: 'Physiotherapist', note: 'Praised again and again in the Google reviews for his attentive, dedicated manner.', photo: '/images/team/toni.webp' },
+      { name: 'Pierre', role: 'Physiotherapist', note: 'Calm hands, a clear plan - guides you patiently and thoroughly back into movement.', photo: '/images/team/pierre.webp' },
+      { name: 'Toni Ritter', role: 'Physiotherapist', note: 'Hands-on and motivating - so you get back to your sport pain-free and strong.', photo: '/images/team/toni.webp' },
       { name: 'Alex', role: 'Physiotherapist', note: '', photo: '' },
       { name: 'Kuba', role: 'Practice dog', note: 'The good soul of the practice - keeps the vibe relaxed.', icon: 'Dog', photo: '' },
     ],
