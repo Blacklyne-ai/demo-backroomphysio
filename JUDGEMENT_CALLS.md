@@ -49,6 +49,23 @@ sind verbatim übernommen, alle Lücken stehen hier als Operator-TODO.
 
 ---
 
+## 3b. FINALISIERUNG (Kundenwunsch: schlanke Visitenkarte, Stand 30.06.2026)
+- **Umfang:** Eine Seite (One-Page) mit Anker-Navigation: Hero · Leistungen · Return to Sport ·
+  **Team** · **Praxis (Foto-Galerie)** · Bewertungen · Kontakt · **Google Maps (unten)**.
+- **Entfernt:** Russisch (RU), Karriere-Seite, alle Unterseiten (alles auf einer Seite).
+  Sprachen jetzt **DE + EN**. Recht (Impressum/Datenschutz) bleibt DE.
+- **Schrift:** auf **Nunito Sans (Headlines) + Open Sans (Body)** umgestellt - identisch zur
+  Live-Seite backroomphysio.de (geprüft per font-family-Grep). Space Grotesk/Inter raus.
+- **Echte Fotos:** Praxis-Galerie + Praxisbilder aus **Instagram @backroomphysio** gezogen
+  (Innenraum 2 Winkel, Aussenansicht/Eingang) + bestehendes Raumfoto. Doctolib-Galerie ist
+  durch Anti-Bot gesperrt (nur 2 Thumbnails sichtbar, nicht herunterladbar).
+- **Team (echt, belegt):** Sergey Bogdanov (Gründer; Inhaber laut Praxisschild „Inh. S.
+  Bogdanov") + Toni Ritter (Physiotherapeut, aus Reviews). **Portraitfotos = Operator-TODO**
+  (auf IG/Doctolib keine sauberen Headshots ziehbar) - aktuell Monogramm-Avatare + „Foto folgt".
+- **⚠ Telefon-Diskrepanz (klären!):** Praxisschild (IG) zeigt **030 28098112**; Website/Google
+  nutzen **030 99270965** (laut Google „vorübergehende Ersatznummer" v. 25.02.2026). Aktuell
+  ist **030 99270965** gesetzt (zuletzt web-publiziert) - vor Go-Live bestätigen, welche gilt.
+
 ## 4. OPERATOR-TODOs (BLOCKIERT KORREKTE LIVE-SCHALTUNG)
 
 > Diese Punkte sind im Code als Kommentar `OPERATOR-TODO` markiert und teils als

@@ -14,13 +14,13 @@ export default defineConfig({
   site: 'https://demo-backroomphysio.pages.dev',
   i18n: {
     defaultLocale: 'de',
-    locales: ['de', 'en', 'ru'],
+    locales: ['de', 'en'],
     routing: { prefixDefaultLocale: false },
   },
   integrations: [
     tailwind({ applyBaseStyles: false }),
     sitemap({
-      i18n: { defaultLocale: 'de', locales: { de: 'de-DE', en: 'en-US', ru: 'ru-RU' } },
+      i18n: { defaultLocale: 'de', locales: { de: 'de-DE', en: 'en-US' } },
       filter: (page) => !/\/(impressum|datenschutz)\/?$/.test(page),
     }),
   ],

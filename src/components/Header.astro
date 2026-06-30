@@ -1,18 +1,13 @@
 ---
 import { nav, cta } from '../data/site';
-import { getLang, basePath, localizedPath } from '../i18n/ui';
+import { getLang, localizedPath } from '../i18n/ui';
 import { useT } from '../i18n/t';
 import Icon from './Icon.astro';
 import LangSwitch from './LangSwitch.astro';
 
 const lang = getLang(Astro.url);
 const t = useT(lang);
-const base = basePath(Astro.url);
-const headerNav = nav.filter((i) => !i.footerOnly);
-const isActive = (href: string) => {
-  const b = href.replace(/^\//, '');
-  return base === b || (b.length > 0 && base.startsWith(b));
-};
+// One-Page: Anker-Navigation (#leistungen …) scrollt in der jeweiligen Sprache.
 ---
 <header id="site-header" class="fixed top-0 left-0 right-0 z-50">
   <div class="container-wide pt-3 md:pt-4">
@@ -31,9 +26,8 @@ const isActive = (href: string) => {
       </a>
 
       <nav class="hidden lg:flex items-center gap-x-1" aria-label="Hauptnavigation">
-        {headerNav.map((item) => (
-          <a href={localizedPath(item.href, lang)} aria-current={isActive(item.href) ? 'page' : undefined}
-             class={`nav-link ${isActive(item.href) ? 'active' : ''}`}>{t.nav[item.key]}</a>
+        {nav.map((item) => (
+          <a href={item.href} class="nav-link">{t.nav[item.key]}</a>
         ))}
       </nav>
 
@@ -59,10 +53,7 @@ const isActive = (href: string) => {
   <div id="mobile-menu" class="hidden lg:hidden container-wide mt-2">
     <nav class="rounded-3xl p-4 flex flex-col max-h-[calc(100vh-6rem)] overflow-y-auto" style="background: rgba(246,247,248,0.98); backdrop-filter: blur(18px); border: 1px solid rgba(224,227,232,0.9); box-shadow: 0 24px 50px -22px rgba(17,20,23,0.28);" aria-label="Mobile Navigation">
       {nav.map((item) => (
-        <a href={localizedPath(item.href, lang)} aria-current={isActive(item.href) ? 'page' : undefined}
-          class={`py-3 border-b border-line/70 font-display text-lg font-medium ${isActive(item.href) ? 'text-green-ink' : 'text-ink/90'}`}>
-          {t.nav[item.key]}
-        </a>
+        <a href={item.href} class="py-3 border-b border-line/70 font-display text-lg font-medium text-ink/90">{t.nav[item.key]}</a>
       ))}
       <div class="flex items-center justify-between mt-5 mb-1">
         <span class="text-muted-light text-xs uppercase tracking-widest font-display">{t.common.language}</span>

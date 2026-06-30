@@ -64,13 +64,12 @@ export const site = {
 
 export const addressOneLine = `${site.address.street}, ${site.address.postcode} ${site.address.city}`;
 
-// ── Navigation. key → Label aus i18n (t.nav[key]). footerOnly = nur im Footer. ──
-export const nav: { key: 'leistungen' | 'rts' | 'ueber' | 'kontakt' | 'karriere'; href: string; footerOnly?: boolean }[] = [
-  { key: 'leistungen', href: '/leistungen' },
-  { key: 'rts', href: '/return-to-sport' },
-  { key: 'ueber', href: '/ueber-uns' },
-  { key: 'kontakt', href: '/kontakt' },
-  { key: 'karriere', href: '/karriere', footerOnly: true },
+// ── Navigation (One-Page, Anker). key → Label aus i18n (t.nav[key]). ──
+export const nav: { key: 'leistungen' | 'team' | 'praxis' | 'kontakt'; href: string }[] = [
+  { key: 'leistungen', href: '#leistungen' },
+  { key: 'team', href: '#team' },
+  { key: 'praxis', href: '#praxis' },
+  { key: 'kontakt', href: '#kontakt' },
 ];
 
 // Primär-CTA (überall): Doctolib, extern, neuer Tab.

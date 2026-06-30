@@ -35,8 +35,8 @@ export default {
         white: 'rgb(var(--rgb-white) / <alpha-value>)',
       },
       fontFamily: {
-        sans: ['"Inter Variable"', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        display: ['"Space Grotesk Variable"', '"Space Grotesk"', 'system-ui', 'sans-serif'],
+        sans: ['"Open Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['"Nunito Sans"', 'system-ui', '-apple-system', 'sans-serif'],
       },
       borderRadius: { pill: '999px' },
       maxWidth: { '7xl': '80rem', '8xl': '88rem' },

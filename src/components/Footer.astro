@@ -33,7 +33,7 @@ const legalNav = [
       <div class="lg:col-span-3">
         <h3 class="text-white text-[0.74rem] font-semibold uppercase tracking-[0.16em] mb-5 font-display">{t.common.navigation}</h3>
         <ul class="space-y-2.5 text-[0.92rem]">
-          {nav.map((l) => (<li><a href={localizedPath(l.href, lang)} class="text-white/60 hover:text-white transition">{t.nav[l.key]}</a></li>))}
+          {nav.map((l) => (<li><a href={l.href} class="text-white/60 hover:text-white transition">{t.nav[l.key]}</a></li>))}
         </ul>
       </div>
 

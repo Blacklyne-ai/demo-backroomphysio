@@ -2,40 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Display: Space Grotesk Variable · Body: Inter Variable — self-hosted woff2,
-   font-display:optional → kein Headline-Reflow, CLS ~0 (Memory feedback_font_display_cls).
-   latin + latin-ext (Umlaute). Cyrillic (RU) = Phase 2. ── */
-@font-face {
-  font-family: "Space Grotesk Variable";
-  font-style: normal; font-weight: 300 700; font-display: optional;
-  src: url("/fonts/space-grotesk-latin.woff2") format("woff2");
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
-}
-@font-face {
-  font-family: "Space Grotesk Variable";
-  font-style: normal; font-weight: 300 700; font-display: optional;
-  src: url("/fonts/space-grotesk-latin-ext.woff2") format("woff2");
-  unicode-range: U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;
-}
-@font-face {
-  font-family: "Inter Variable";
-  font-style: normal; font-weight: 100 900; font-display: optional;
-  src: url("/fonts/inter-latin.woff2") format("woff2");
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
-}
-@font-face {
-  font-family: "Inter Variable";
-  font-style: normal; font-weight: 100 900; font-display: optional;
-  src: url("/fonts/inter-latin-ext.woff2") format("woff2");
-  unicode-range: U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;
-}
-/* Cyrillic — für RU-Labels (z. B. "Русский"); volle RU-Übersetzung = Phase 2. */
-@font-face {
-  font-family: "Inter Variable";
-  font-style: normal; font-weight: 100 900; font-display: optional;
-  src: url("/fonts/inter-cyrillic.woff2") format("woff2");
-  unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;
-}
+/* ── Schriften wie auf der Live-Seite backroomphysio.de: Display = Nunito Sans,
+   Body = Open Sans. Self-hosted woff2, font-display:optional → CLS ~0
+   (Memory feedback_font_display_cls / feedback_original_fonts). latin + latin-ext (Umlaute). ── */
+@font-face { font-family:"Open Sans"; font-style:normal; font-weight:400; font-display:optional; src:url("/fonts/open-latin-400.woff2") format("woff2"); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family:"Open Sans"; font-style:normal; font-weight:400; font-display:optional; src:url("/fonts/open-latin-ext-400.woff2") format("woff2"); unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family:"Open Sans"; font-style:normal; font-weight:600; font-display:optional; src:url("/fonts/open-latin-600.woff2") format("woff2"); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family:"Open Sans"; font-style:normal; font-weight:600; font-display:optional; src:url("/fonts/open-latin-ext-600.woff2") format("woff2"); unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family:"Open Sans"; font-style:normal; font-weight:700; font-display:optional; src:url("/fonts/open-latin-700.woff2") format("woff2"); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family:"Open Sans"; font-style:normal; font-weight:700; font-display:optional; src:url("/fonts/open-latin-ext-700.woff2") format("woff2"); unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family:"Nunito Sans"; font-style:normal; font-weight:600; font-display:optional; src:url("/fonts/nunito-latin-600.woff2") format("woff2"); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family:"Nunito Sans"; font-style:normal; font-weight:600; font-display:optional; src:url("/fonts/nunito-latin-ext-600.woff2") format("woff2"); unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family:"Nunito Sans"; font-style:normal; font-weight:700; font-display:optional; src:url("/fonts/nunito-latin-700.woff2") format("woff2"); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family:"Nunito Sans"; font-style:normal; font-weight:700; font-display:optional; src:url("/fonts/nunito-latin-ext-700.woff2") format("woff2"); unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family:"Nunito Sans"; font-style:normal; font-weight:800; font-display:optional; src:url("/fonts/nunito-latin-800.woff2") format("woff2"); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family:"Nunito Sans"; font-style:normal; font-weight:800; font-display:optional; src:url("/fonts/nunito-latin-ext-800.woff2") format("woff2"); unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF; }
 
 /* ════════════════════════════════════════════════════════════════
    BACKROOM PHYSIO BERLIN — "BACK TO SPORT" DESIGN SYSTEM
@@ -68,8 +49,8 @@
   --rgb-green-bright: 63 224 141;/* #3FE08D Glow/Hover auf Dark             */
   --rgb-white: 255 255 255;
 
-  --font-sans: "Inter Variable", Inter, system-ui, -apple-system, sans-serif;
-  --font-display: "Space Grotesk Variable", "Space Grotesk", system-ui, sans-serif;
+  --font-sans: "Open Sans", system-ui, -apple-system, sans-serif;
+  --font-display: "Nunito Sans", system-ui, -apple-system, sans-serif;
 
   --radius-sm: 8px;
   --radius-md: 14px;
@@ -113,9 +94,9 @@
   h1, h2, h3, h4 {
     font-family: var(--font-display);
     color: rgb(var(--rgb-ink));
-    font-weight: 600;
-    line-height: 1.04;
-    letter-spacing: -0.022em;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
     overflow-wrap: break-word;
   }
 
@@ -153,18 +134,18 @@
 
   /* ════════ TYPO-SKALA (Space Grotesk Display) ════════ */
   .display-1 {
-    font-family: var(--font-display); font-weight: 600;
-    font-size: clamp(2.7rem, 7vw, 5.2rem); line-height: 0.98; letter-spacing: -0.03em;
+    font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(2.6rem, 6.6vw, 4.9rem); line-height: 1.02; letter-spacing: -0.018em;
     color: rgb(var(--rgb-ink));
   }
   .display-2 {
-    font-family: var(--font-display); font-weight: 600;
-    font-size: clamp(2rem, 4.4vw, 3.3rem); line-height: 1.03; letter-spacing: -0.026em;
+    font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(1.95rem, 4.2vw, 3.1rem); line-height: 1.07; letter-spacing: -0.012em;
     color: rgb(var(--rgb-ink));
   }
   .display-3 {
-    font-family: var(--font-display); font-weight: 600;
-    font-size: clamp(1.45rem, 2.6vw, 1.95rem); line-height: 1.12; letter-spacing: -0.02em;
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(1.45rem, 2.6vw, 1.95rem); line-height: 1.14; letter-spacing: -0.006em;
     color: rgb(var(--rgb-ink));
   }
   .lede {

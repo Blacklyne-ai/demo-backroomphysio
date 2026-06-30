@@ -63,20 +63,18 @@ perfekt: Grün = "Go / zurück in Bewegung / Return". Sehr sparsam einsetzen.
 
 ---
 
-## Schrift
+## Schrift  (FINAL: identisch zur Live-Seite)
 
-Baukasten nutzte **Nunito Sans** (Headlines) + **Open Sans** (Body) — das ist
-der MyWebsite-NOW-Default (rund, weich), **keine** bewusste Markenwahl. Der Brief
-verlangt ausdrücklich eine *athletische, präzise* Sans → bewusst neu gewählt:
+Auf **ausdrücklichen Kundenwunsch** an die bestehende Seite backroomphysio.de angeglichen
+(font-family-Grep der Live-Seite: NunitoSans + OpenSans):
 
-- **Display / Headlines: Space Grotesk Variable** — präzise, athletisch,
-  urban-Berlin, eigenständiger Charakter (g, a) ohne Gimmick. Für grosse Statements
-  und getrackte Uppercase-Eyebrows.
-- **Body / UI: Inter Variable** — neutraler internationaler Workhorse, exzellente
-  Lesbarkeit DE/EN; **Cyrillic-fähig** → RU-ready (Phase 2).
+- **Display / Headlines: Nunito Sans** (700/800) — der Marken-Look der Live-Seite, freundlich-bold.
+- **Body / UI: Open Sans** (400/600/700) — wie Live-Seite.
 
 Self-hosted woff2 (latin + latin-ext für Umlaute), `font-display: optional`
-(CLS ~0, Memory feedback_font_display_cls). Cyrillic-Subset für RU = Phase 2.
+(CLS ~0, Memory feedback_font_display_cls + feedback_original_fonts).
+
+*(Zwischenstand war Space Grotesk + Inter - bewusst verworfen zugunsten Marken-Konsistenz.)*
 
 ---
 

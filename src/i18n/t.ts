@@ -7,7 +7,7 @@
 import type { Lang } from './ui';
 
 const de = {
-  nav: { leistungen: 'Leistungen', rts: 'Return to Sport', ueber: 'Über uns', kontakt: 'Kontakt', karriere: 'Karriere' },
+  nav: { leistungen: 'Leistungen', team: 'Team', praxis: 'Praxis', kontakt: 'Kontakt', rts: 'Return to Sport', ueber: 'Über uns', karriere: 'Karriere' },
   common: {
     bookDoctolib: 'Termin über Doctolib', book: 'Termin', call: 'Anrufen', language: 'Sprache',
     learnMore: 'Mehr erfahren', allServices: 'Alle Leistungen', moreAboutUs: 'Mehr über uns',
@@ -111,6 +111,18 @@ const de = {
     fp2: 'Im Team behandelt u. a. Physiotherapeut Toni Ritter - in den Google-Bewertungen immer wieder für seine aufmerksame, engagierte Art genannt.',
     founderTags: ['Krafttraining', 'Functional Training', 'Reha-Training', 'Wettkampfvorbereitung', 'Sportmassage'],
   },
+  team: {
+    eyebrow: 'Team',
+    title: 'Wer Sie zurückbringt.',
+    intro: 'Eine kleine, eingespielte Praxis - bei Backroom werden Sie persönlich betreut, nicht im Akkord.',
+    photoNote: 'Foto folgt',
+    members: [
+      { name: 'Sergey Bogdanov', role: 'Gründer · Physiotherapeut & Gewichtheber-Coach', note: 'Physiotherapeut und zugleich Trainer im Gewichtheben bzw. in der Langhantelathletik (BVDG). Return to Sport in Person.' },
+      { name: 'Toni Ritter', role: 'Physiotherapeut', note: 'In den Google-Bewertungen immer wieder für seine aufmerksame, engagierte Art genannt.' },
+    ],
+  },
+  maps: { eyebrow: 'Anfahrt', title: 'Mitten in Berlin-Mitte.', text: 'Linienstraße 139-140, 10115 Berlin - im Herzen von Mitte, gut erreichbar.' },
+  praxisGallery: 'Ein Blick in die Praxis',
   kontakt: {
     heroTitle: 'Kurzer Weg zum <span class="text-green-ink">ersten Termin</span>.',
     heroSub: 'Buchen Sie direkt online über Doctolib oder melden Sie sich telefonisch. Wir sind in Berlin-Mitte, gut erreichbar.',
@@ -143,7 +155,7 @@ const de = {
 };
 
 const en: typeof de = {
-  nav: { leistungen: 'Services', rts: 'Return to Sport', ueber: 'About', kontakt: 'Contact', karriere: 'Careers' },
+  nav: { leistungen: 'Services', team: 'Team', praxis: 'Practice', kontakt: 'Contact', rts: 'Return to Sport', ueber: 'About', karriere: 'Careers' },
   common: {
     bookDoctolib: 'Book via Doctolib', book: 'Book', call: 'Call', language: 'Language',
     learnMore: 'Learn more', allServices: 'All services', moreAboutUs: 'More about us',
@@ -247,6 +259,18 @@ const en: typeof de = {
     fp2: 'The team also includes physiotherapist Toni Ritter - praised again and again in the Google reviews for his attentive, dedicated manner.',
     founderTags: ['Strength training', 'Functional training', 'Rehab training', 'Competition prep', 'Sports massage'],
   },
+  team: {
+    eyebrow: 'Team',
+    title: 'Who brings you back.',
+    intro: 'A small, well-coordinated practice - at Backroom you get personal care, not an assembly line.',
+    photoNote: 'Photo soon',
+    members: [
+      { name: 'Sergey Bogdanov', role: 'Founder · Physiotherapist & weightlifting coach', note: 'Physiotherapist and also a coach in weightlifting / barbell athletics (BVDG). Return to Sport in person.' },
+      { name: 'Toni Ritter', role: 'Physiotherapist', note: 'Praised again and again in the Google reviews for his attentive, dedicated manner.' },
+    ],
+  },
+  maps: { eyebrow: 'Directions', title: 'Right in Berlin-Mitte.', text: 'Linienstraße 139-140, 10115 Berlin - in the heart of Mitte, easy to reach.' },
+  praxisGallery: 'A look inside the practice',
   kontakt: {
     heroTitle: 'A short path to your <span class="text-green-ink">first appointment</span>.',
     heroSub: 'Book online via Doctolib or just give us a call. We’re in Berlin-Mitte, easy to reach.',
@@ -414,6 +438,8 @@ const ru: typeof de = {
   },
 };
 
-export const T = { de, en, ru };
+// RU entfernt (Kundenwunsch: schlanke Visitenkarte, DE/EN). `ru` bleibt als Vorlage
+// im Quelltext, wird aber nicht mehr gebaut/verlinkt.
+export const T = { de, en };
 export function useT(lang: Lang) { return T[lang]; }
 export type Dict = typeof de;
