@@ -118,7 +118,16 @@ Web-/Registerrecherche zu Inhaber, Größe, Alter. **Belegt** (mehrere Quellen) 
 - Öffnungs-/Sprechzeiten (nicht auf Altseite) → für Kontakt, SchemaOrg, ggf.
   Live-Status nachliefern.
 
-### 4.5 TEAM  (teilweise gelöst durch Recherche 4.0)
+### 4.5 TEAM  (vom Kunden ergänzt: 5 + Praxishund)
+- **Aktuelles Team (Kundenangabe):** Sergey Bogdanov (Gründer), Pierre, Toni Ritter,
+  Alex + **Kuba (Praxishund)**. Auf der Seite als Karten (Sergey featured + 4er-Grid,
+  Kuba mit Hunde-Icon).
+- **OFFEN:** (a) **Fotos** von Sergey, Pierre, Toni hat der Kunde geschickt - konnten aber
+  aus dem Chat nicht als Datei gelesen werden → als Dateien nachreichen, dann ersetze ich
+  die Monogramme (Pfade: `public/images/team/{sergey,pierre,toni}.webp`). (b) **Rollen**
+  von Pierre & Alex sind als „Physiotherapeut" angenommen → bestätigen/präzisieren.
+
+### 4.5b TEAM (Alt-Recherche)
 - **Inhaber/Gründer: Sergey Bogdanov** (Register). Auf `/ueber-uns` belegt benannt.
 - **Korrektur:** Es ist KEINE reine Einzelpraxis. Die Google-Reviews nennen mehrfach
   **Toni Ritter** als behandelnden Physiotherapeuten → mindestens 2 Personen (Register

@@ -72,7 +72,7 @@ if (rating <= 0) return null;
 
     <div class="mt-12 pt-10 border-t border-line" data-reveal>
       <p class="text-muted-light text-xs uppercase tracking-widest font-display mb-5">{t.reviews.highlightsTitle}</p>
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {t.highlights.map((label, i) => (
           <div class="flex items-center gap-3">
             <span class="icon-chip flex-none w-10 h-10"><Icon name={highlightIcons[i]} size={20} strokeWidth={1.9} /></span>
