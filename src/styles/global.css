@@ -43,10 +43,10 @@
   --rgb-dark-deep: 11 14 16;    /* #0B0E10  Footer-Basis                    */
   --rgb-dark-soft: 26 30 34;    /* #1A1E22  Elevated auf Dark               */
 
-  --rgb-green: 31 199 119;      /* #1FC777  Akzent auf Dark, Dots, Icons    */
-  --rgb-green-deep: 11 125 70;  /* #0B7D46  Buttons (weisser Text AA)       */
-  --rgb-green-ink: 6 83 46;     /* #06532E  Grün-Text auf Light (AAA)       */
-  --rgb-green-bright: 63 224 141;/* #3FE08D Glow/Hover auf Dark             */
+  --rgb-green: 95 162 112;       /* #5FA270  Akzent auf Dark (gelifteter Portrait-Ton) */
+  --rgb-green-deep: 40 60 42;    /* #283C2A  = Portrait-Hintergrund. Buttons, Akzent   */
+  --rgb-green-ink: 31 46 33;     /* #1F2E21  Grün-Text auf Light (AAA), Hover          */
+  --rgb-green-bright: 130 196 142;/* #82C48E Glow/Hover auf Dark (heller Portrait-Ton)  */
   --rgb-white: 255 255 255;
 
   --font-sans: "Open Sans", system-ui, -apple-system, sans-serif;
@@ -312,14 +312,6 @@
   .legal-prose a:hover { border-color: rgb(var(--rgb-green-deep)); }
   .legal-prose ul { list-style: disc; padding-left: 1.3rem; margin-bottom: 1rem; }
   .legal-prose li { margin-bottom: 0.4rem; }
-
-  /* Operator-Platzhalter — sichtbar zu vervollständigen */
-  .op {
-    display: inline; padding: 0.05em 0.45em; border-radius: 6px;
-    background: rgb(var(--rgb-green-deep) / 0.12); color: rgb(var(--rgb-green-ink));
-    border: 1px dashed rgb(var(--rgb-green-deep) / 0.45);
-    font-weight: 600; font-size: 0.92em;
-  }
 }
 
 /* ════════════════════════ KEYFRAMES (außerhalb @layer — Tailwind v3 purge-safe) ════════ */
